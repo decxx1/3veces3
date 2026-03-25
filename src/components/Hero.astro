@@ -1,0 +1,242 @@
+---
+---
+<section
+    id="hero"
+    class="relative min-h-screen flex items-center justify-center"
+>
+    <canvas id="hero-canvas" aria-hidden="true"></canvas>
+    <div class="relative z-10 px-4 max-w-8xl">
+        <h1 class="text-white font-bold leading-none">
+            <span class="text-5xl md:text-7xl lg:text-7xl block">Somos una agencia</span>
+            <span class="text-5xl md:text-7xl lg:text-7xl block">de comunicación</span>
+            <span class="flex flex-wrap items-end gap-x-6 gap-y-4">
+                <span class="text-5xl md:text-7xl lg:text-7xl">&amp; marketing</span>
+                <p class="text-white text-sm md:text-base font-medium max-w-sm leading-snug mb-2">
+                    que combina estrategia, creatividad y conciencia para impulsar el
+                    <strong class="bg-highlight text-white px-1 font-bold">Impacto Positivo</strong>
+                    en marcas, organizaciones y proyectos.
+                </p>
+            </span>
+        </h1>
+    </div>
+</section>
+
+<style>
+    #hero {
+        overflow: hidden;
+    }
+
+    #hero-canvas {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+
+        /* Look final */
+        filter: blur(40px) saturate(120%);
+        transform: scale(1.1);
+    }
+</style>
+
+<script>
+const hero   = document.getElementById('hero');
+const canvas = document.getElementById('hero-canvas');
+const ctx    = canvas.getContext('2d');
+
+// 🎨 Paleta (mono-gradient moderno)
+const C_verde   = [67, 88, 94];
+const C_blanco = [196,164,140];
+const C_amarillo   = [239, 166, 86];
+const C_marron   = [196, 164, 140];
+
+const RES = 6;
+
+let W = 0, H = 0, cols = 0, rows = 0;
+
+let mouseX = 0.5, mouseY = 0.5;
+let targetMouseX = 0.5, targetMouseY = 0.5;
+
+function lerp(a, b, t) { return a + (b - a) * t; }
+function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+
+function resize() {
+    W = hero.offsetWidth;
+    H = hero.offsetHeight;
+
+    cols = Math.ceil(W / RES) + 1;
+    rows = Math.ceil(H / RES) + 1;
+
+    canvas.width  = cols;
+    canvas.height = rows;
+}
+
+// 🎯 Distribución intencional
+const points = [
+    // Centro oscuro
+    {
+        color: C_verde,
+        ax: 0.08, ay: 0.08,
+        fx: 0.00008, fy: 0.00008,
+        px: 0.0, py: 0.0,
+        cx: 0.5, cy: 0.5
+    },
+
+    // Pink principal (abajo derecha)
+    {
+        color: C_amarillo,
+        ax: 0.12, ay: 0.12,
+        fx: 0.00012, fy: 0.00010,
+        px: 2.0, py: 1.0,
+        cx: 0.85, cy: 0.85
+    },
+
+    // Pink secundario (arriba izquierda)
+    {
+        color: C_amarillo,
+        ax: 0.10, ay: 0.10,
+        fx: 0.00010, fy: 0.00112,
+        px: 4.0, py: 3.0,
+        cx: 0.15, cy: 0.15
+    },
+
+    // transición
+    {
+        color: C_blanco,
+        ax: 0.15, ay: 0.92,
+        fx: 0.00014, fy: 0.00011,
+        px: 1.5, py: 2.5,
+        cx: 0.2, cy: 0.1
+    }
+];
+
+function draw(t) {
+    mouseX = lerp(mouseX, targetMouseX, 0.08);
+    mouseY = lerp(mouseY, targetMouseY, 0.08);
+
+    const pts = points.map(p => ({
+        color: p.color,
+        x: clamp(
+            p.cx +
+            Math.sin((t * p.fx) + p.px) * p.ax +
+            Math.sin((t * p.fx) * 0.5 + p.py) * p.ax * 0.5,
+            0, 1
+        ),
+        y: clamp(
+            p.cy +
+            Math.cos((t * p.fy) + p.py) * p.ay +
+            Math.cos((t * p.fy) * 0.6 + p.px) * p.ay * 0.5,
+            0, 1
+        ),
+    }));
+
+    const img = ctx.createImageData(cols, rows);
+    const data = img.data;
+
+    for (let row = 0; row < rows; row++) {
+        const fy = row / (rows - 1);
+
+        for (let col = 0; col < cols; col++) {
+            const fx = col / (cols - 1);
+
+            let sumW = 0;
+            let r = 0, g = 0, b = 0;
+
+            for (const p of pts) {
+                const dx = fx - p.x;
+                const dy = fy - p.y;
+                const d2 = dx * dx + dy * dy;
+
+                const w = 1 / (d2 + 0.0005);
+
+                r += p.color[0] * w;
+                g += p.color[1] * w;
+                b += p.color[2] * w;
+                sumW += w;
+            }
+
+            r /= sumW;
+            g /= sumW;
+            b /= sumW;
+
+            // 🎯 centro oscuro dominante
+            const dxC = fx - 0.5;
+            const dyC = fy - 0.5;
+            const distC = Math.sqrt(dxC * dxC + dyC * dyC);
+            const centerInf = Math.max(0, 1 - distC * 1.4);
+
+            // mucho más dominante
+            const centerStrength = Math.pow(centerInf, 1.8);
+
+            r = lerp(r, C_verde[0], centerStrength * 0.9);
+            g = lerp(g, C_verde[1], centerStrength * 0.9);
+            b = lerp(b, C_verde[2], centerStrength * 0.9);
+
+            // 🎯 pink abajo derecha
+            const dxBR = fx - 0.85;
+            const dyBR = fy - 0.85;
+            const distBR = Math.sqrt(dxBR * dxBR + dyBR * dyBR);
+            const pinkInf = Math.max(0, 1 - distBR * 2.5);
+
+            r = lerp(r, C_amarillo[0], pinkInf * 0.8);
+            g = lerp(g, C_amarillo[1], pinkInf * 0.8);
+            b = lerp(b, C_amarillo[2], pinkInf * 0.8);
+
+            // 🖱️ interacción mouse (fluido)
+            const dxm = fx - mouseX;
+            const dym = fy - mouseY;
+            const distM = Math.sqrt(dxm * dxm + dym * dym);
+
+            const radius = 0.3;
+
+            if (distM < radius) {
+                const influence = 1 - (distM / radius);
+
+                r += (C_marron[0] - r) * influence * 0.5;
+                g += (C_marron[1] - g) * influence * 0.5;
+                b += (C_marron[2] - b) * influence * 0.5;
+            }
+
+            const i = (row * cols + col) * 4;
+
+            data[i]     = clamp(r, 0, 255);
+            data[i + 1] = clamp(g, 0, 255);
+            data[i + 2] = clamp(b, 0, 255);
+            data[i + 3] = 255;
+        }
+    }
+
+    ctx.putImageData(img, 0, 0);
+}
+
+let start;
+let lastFrame = 0;
+const FPS = 30;
+const interval = 1000 / FPS;
+
+function frame(ts) {
+    if (!start) start = ts;
+
+    if (ts - lastFrame > interval) {
+        draw(ts - start);
+        lastFrame = ts;
+    }
+
+    requestAnimationFrame(frame);
+}
+
+hero.addEventListener('mousemove', (e) => {
+    const rect = hero.getBoundingClientRect();
+
+    targetMouseX = (e.clientX - rect.left) / rect.width;
+    targetMouseY = (e.clientY - rect.top)  / rect.height;
+});
+
+hero.addEventListener('mouseleave', () => {
+    targetMouseX = 0.5;
+    targetMouseY = 0.5;
+});
+
+resize();
+window.addEventListener('resize', resize);
+requestAnimationFrame(frame);
+</script>

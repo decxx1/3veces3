@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+@theme {
+    --font-montserrat: 'Montserrat Variable', sans-serif;
+    
+    --color-degrade-3: #43585e;
+    --color-degrade-2: #efa656;
+    --color-degrade-1: #c4a48c;
+    --color-highlight: #2c4859;
+}
