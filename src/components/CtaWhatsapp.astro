@@ -1,0 +1,33 @@
+---
+const phone = "5491100000000"; // reemplazar con el número real
+const message = encodeURIComponent("Hola, tengo un proyecto y me gustaría conversarlo.");
+const href = `https://wa.me/${phone}?text=${message}`;
+---
+
+<section class="bg-[#0c0c0c] py-12 md:py-16">
+    <div class="container max-w-6xl mx-auto px-8 md:px-16">
+        <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group flex items-center justify-center gap-5 w-fit mx-auto"
+        >
+            <p class="text-white text-lg md:text-2xl text-right leading-snug">
+                Si tenés un proyecto y querés multiplicar su impacto,<br />
+                <strong class="font-bold">conversemos.</strong>
+            </p>
+
+            <!-- Ícono WhatsApp -->
+            <div class="shrink-0 size-16 rounded-full border-2 border-white bg-white flex items-center justify-center transition-colors duration-300 group-hover:bg-[#0c0c0c]">
+                <svg
+                    viewBox="0 0 24 24"
+                    class="size-9 fill-[#0c0c0c] transition-colors duration-300 group-hover:fill-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                >
+                    <path d="M12.001 2C6.478 2 2 6.478 2 12c0 1.85.504 3.58 1.38 5.068L2.05 21.95l5.02-1.31A9.956 9.956 0 0 0 12 22c5.523 0 10-4.477 10-10S17.524 2 12.001 2Zm0 18a7.95 7.95 0 0 1-4.07-1.117l-.29-.174-3.007.784.804-2.93-.19-.302A7.96 7.96 0 0 1 4 12c0-4.411 3.589-8 8.001-8C16.411 4 20 7.589 20 12s-3.589 8-7.999 8Zm4.38-5.837c-.238-.12-1.407-.693-1.625-.772-.218-.079-.377-.119-.536.12-.158.238-.614.772-.752.931-.139.158-.277.178-.515.059-.238-.12-1.005-.37-1.914-1.18-.707-.63-1.185-1.408-1.323-1.646-.139-.238-.015-.367.104-.485.107-.107.238-.278.357-.417.12-.139.159-.238.238-.397.08-.159.04-.298-.02-.417-.059-.12-.535-1.29-.733-1.766-.193-.464-.39-.4-.535-.408l-.456-.008c-.159 0-.417.06-.635.298-.218.238-.833.814-.833 1.984s.853 2.3.971 2.46c.12.158 1.679 2.563 4.068 3.593.568.245 1.012.391 1.357.5.57.181 1.089.155 1.499.094.457-.068 1.407-.575 1.606-1.13.198-.556.198-1.033.139-1.132-.059-.099-.218-.158-.456-.278Z"/>
+                </svg>
+            </div>
+        </a>
+    </div>
+</section>
