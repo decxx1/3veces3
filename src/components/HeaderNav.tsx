@@ -67,7 +67,7 @@ export default function HeaderNav() {
                             alt="Tres Veces Tres"
                             className={[
                                 "block w-full transition-[opacity,transform] duration-400",
-                                scrolled ? "opacity-0 scale-75 -translate-y-1.5" : "opacity-100 scale-100 translate-y-0",
+                                scrolled ? "opacity-0 scale-75" : "opacity-100 scale-100",
                             ].join(" ")}
                             style={{ transitionTimingFunction: scrolled ? "ease" : "cubic-bezier(0.34, 1.56, 0.64, 1)" }}
                         />
@@ -78,9 +78,8 @@ export default function HeaderNav() {
                             aria-hidden="true"
                             className={[
                                 "absolute inset-0 block w-full transition-[opacity,transform] duration-400",
-                                scrolled ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-70 translate-y-2",
+                                scrolled ? "opacity-100 scale-100 translate-y-1" : "opacity-0 scale-10",
                             ].join(" ")}
-                            style={{ transitionTimingFunction: scrolled ? "cubic-bezier(0.34, 1.56, 0.64, 1)" : "ease" }}
                         />
                     </a>
 
