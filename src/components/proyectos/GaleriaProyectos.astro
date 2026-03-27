@@ -1,136 +1,85 @@
 ---
-// GaleriaProyectos.astro — Project gallery with expand/shrink hover on two-column rows
+import ProyectoCard from './ProyectoCard.astro';
 ---
 
-<section class="galeria-proyectos w-full">
+<section class="galeria-proyectos w-full flex flex-col gap-1.5 bg-white p-1.5">
 
   <!-- Row 1: redgroup — full width -->
-  <div class="group relative overflow-hidden h-[500px] cursor-pointer">
-    <img
-      src="/images/proyectos/bg-redgroup.png"
+  <div class="group relative overflow-hidden h-125 shrink-0">
+    <ProyectoCard
+      bg="/images/proyectos/bg-redgroup.png"
+      logo="/images/logos/empresas/redgroup.svg"
       alt="Redgroup"
-      class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
+      logoWidth="w-64"
     />
-    <div class="absolute inset-0 bg-black/40 transition-colors duration-500 group-hover:bg-black/30"></div>
-    <div class="absolute inset-0 flex items-center justify-center">
-      <img
-        src="/images/logos/empresas/redgroup.svg"
-        alt="Redgroup logo"
-        class="w-[210px] max-w-[55%] brightness-0 invert drop-shadow-lg transition-transform duration-500 group-hover:scale-110"
-      />
-    </div>
   </div>
 
   <!-- Row 2: btobcomex + pacha-magma — two columns -->
-  <div class="duo-row flex h-[400px]">
-    <!-- btobcomex -->
-    <div class="duo-card group relative overflow-hidden cursor-pointer transition-[flex] duration-500 ease-in-out flex-[1]">
-      <img
-        src="/images/proyectos/bg-btobcomex.webp"
+  <div class="duo-row flex gap-1.5 h-100 shrink-0">
+    <div class="duo-card transition-[flex] duration-500 ease-in-out flex-1 min-w-0">
+      <ProyectoCard
+        bg="/images/proyectos/bg-btobcomex.webp"
+        logo="/images/logos/empresas/btobcomex.svg"
         alt="BtoB Comex"
-        class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
+        logoWidth="w-72"
       />
-      <div class="absolute inset-0 bg-black/45 transition-colors duration-500 group-hover:bg-black/30"></div>
-      <div class="absolute inset-0 flex items-center justify-center">
-        <img
-          src="/images/logos/empresas/btobcomex.svg"
-          alt="BtoB Comex logo"
-          class="w-[190px] max-w-[55%] brightness-0 invert drop-shadow-lg transition-transform duration-500 group-hover:scale-110"
-        />
-      </div>
     </div>
-    <!-- pacha-magma -->
-    <div class="duo-card group relative overflow-hidden cursor-pointer transition-[flex] duration-500 ease-in-out flex-[1]">
-      <img
-        src="/images/proyectos/bg-pacha-magma.png"
+    <div class="duo-card transition-[flex] duration-500 ease-in-out flex-1 min-w-0">
+      <ProyectoCard
+        bg="/images/proyectos/bg-pacha-magma.png"
+        logo="/images/logos/empresas/pacha-magma.svg"
         alt="Pacha Magma"
-        class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
+        logoWidth="w-48"
       />
-      <div class="absolute inset-0 bg-black/40 transition-colors duration-500 group-hover:bg-black/30"></div>
-      <div class="absolute inset-0 flex items-center justify-center">
-        <img
-          src="/images/logos/empresas/pacha-magma.svg"
-          alt="Pacha Magma logo"
-          class="w-[190px] max-w-[55%] brightness-0 invert drop-shadow-lg transition-transform duration-500 group-hover:scale-110"
-        />
-      </div>
     </div>
   </div>
 
   <!-- Row 3: vodem — full width -->
-  <div class="group relative overflow-hidden h-[500px] cursor-pointer">
-    <img
-      src="/images/proyectos/bg-vodem.png"
+  <div class="group relative overflow-hidden h-125 shrink-0">
+    <ProyectoCard
+      bg="/images/proyectos/bg-vodem.png"
+      logo="/images/logos/empresas/vodem.svg"
       alt="Vodem"
-      class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
+      logoWidth="w-52"
     />
-    <div class="absolute inset-0 bg-black/40 transition-colors duration-500 group-hover:bg-black/30"></div>
-    <div class="absolute inset-0 flex items-center justify-center">
-      <img
-        src="/images/logos/empresas/vodem.svg"
-        alt="Vodem logo"
-        class="w-[200px] max-w-[55%] brightness-0 invert drop-shadow-lg transition-transform duration-500 group-hover:scale-110"
-      />
-    </div>
   </div>
 
   <!-- Row 4: prosanitas + nexovitalis — two columns (gradient backgrounds) -->
-  <div class="duo-row flex h-[400px]">
-    <!-- prosanitas -->
-    <div class="duo-card group relative overflow-hidden cursor-pointer transition-[flex] duration-500 ease-in-out flex-[1] bg-gradient-to-br from-gray-400 to-gray-500">
-      <div class="absolute inset-0 bg-black/20 transition-colors duration-500 group-hover:bg-black/10"></div>
-      <div class="absolute inset-0 flex items-center justify-center">
-        <img
-          src="/images/logos/empresas/prosanitas.png"
-          alt="Prosanitas logo"
-          class="w-[200px] max-w-[55%] brightness-0 invert drop-shadow-lg transition-transform duration-500 group-hover:scale-110"
-        />
-      </div>
+  <div class="duo-row flex gap-1.5 h-100 shrink-0">
+    <div class="duo-card transition-[flex] duration-500 ease-in-out flex-1 min-w-0">
+      <ProyectoCard
+        gradientClass="bg-gradient-to-br from-gray-400 to-gray-500"
+        logo="/images/logos/empresas/prosanitas.png"
+        alt="Prosanitas"
+        logoWidth="w-52"
+      />
     </div>
-    <!-- nexovitalis -->
-    <div class="duo-card group relative overflow-hidden cursor-pointer transition-[flex] duration-500 ease-in-out flex-[1] bg-gradient-to-br from-blue-900 to-blue-950">
-      <div class="absolute inset-0 bg-black/15 transition-colors duration-500 group-hover:bg-black/5"></div>
-      <div class="absolute inset-0 flex items-center justify-center">
-        <img
-          src="/images/logos/empresas/nexovitalis.png"
-          alt="Nexovitalis logo"
-          class="w-[200px] max-w-[55%] brightness-0 invert drop-shadow-lg transition-transform duration-500 group-hover:scale-110"
-        />
-      </div>
+    <div class="duo-card transition-[flex] duration-500 ease-in-out flex-1 min-w-0">
+      <ProyectoCard
+        gradientClass="bg-gradient-to-br from-blue-900 to-blue-950"
+        logo="/images/logos/empresas/nexovitalis.png"
+        alt="Nexovitalis"
+        logoWidth="w-58"
+      />
     </div>
   </div>
 
   <!-- Row 5: atxona — full width -->
-  <div class="group relative overflow-hidden h-[500px] cursor-pointer">
-    <img
-      src="/images/proyectos/bg-atxona.png"
+  <div class="group relative overflow-hidden h-125 shrink-0">
+    <ProyectoCard
+      bg="/images/proyectos/bg-atxona.png"
+      logo="/images/logos/empresas/atxona.svg"
       alt="Grupo Atxona"
-      class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
+      logoWidth="w-80"
     />
-    <div class="absolute inset-0 bg-black/40 transition-colors duration-500 group-hover:bg-black/30"></div>
-    <div class="absolute inset-0 flex items-center justify-center">
-      <img
-        src="/images/logos/empresas/atxona.svg"
-        alt="Grupo Atxona logo"
-        class="w-[210px] max-w-[55%] brightness-0 invert drop-shadow-lg transition-transform duration-500 group-hover:scale-110"
-      />
-    </div>
   </div>
 
 </section>
 
 <style>
   /* Two-column expand/shrink on hover using :has() */
-  .duo-row:has(.duo-card:first-child:hover) .duo-card:first-child {
-    flex: 1.6;
-  }
-  .duo-row:has(.duo-card:first-child:hover) .duo-card:last-child {
-    flex: 0.4;
-  }
-  .duo-row:has(.duo-card:last-child:hover) .duo-card:last-child {
-    flex: 1.6;
-  }
-  .duo-row:has(.duo-card:last-child:hover) .duo-card:first-child {
-    flex: 0.4;
-  }
+  .duo-row:has(.duo-card:first-child:hover) .duo-card:first-child { flex: 1.6; }
+  .duo-row:has(.duo-card:first-child:hover) .duo-card:last-child  { flex: 0.4; }
+  .duo-row:has(.duo-card:last-child:hover)  .duo-card:last-child  { flex: 1.6; }
+  .duo-row:has(.duo-card:last-child:hover)  .duo-card:first-child { flex: 0.4; }
 </style>
