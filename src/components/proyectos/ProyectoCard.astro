@@ -19,12 +19,12 @@ const { bg, gradientClass = '', logo, alt, logoWidth = 'w-52' } = Astro.props;
       class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
     />
   )}
-  <div class="absolute inset-0 bg-black/40 transition-colors duration-500 group-hover:bg-black/25"></div>
+  <div class="absolute inset-0 bg-linear-to-r from-10% to-80% from-black/60 to-transparent transition-colors duration-500 group-hover:from-black/30"></div>
   <div class="absolute inset-0 flex items-center justify-center">
     <img
       src={logo}
       alt={alt}
-      class:list={[logoWidth, 'max-w-[55%] brightness-0 invert drop-shadow-lg transition-transform duration-500 group-hover:scale-110']}
+      class:list={[logoWidth, 'max-w-[55%] drop-shadow-xl transition-transform duration-500 group-hover:scale-110']}
     />
   </div>
 </div>
