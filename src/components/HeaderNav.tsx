@@ -8,6 +8,8 @@ const NAV_LINKS = [
 
 const LIGHT_BG_PATHS = ["/proyectos"];
 
+const normalizePath = (p: string) => p.replace(/\/$/, "") || "/";
+
 interface Props {
     pathname: string;
 }
@@ -18,9 +20,9 @@ export default function HeaderNav({ pathname: initialPathname }: Props) {
     const firstTime = useRef(true);
     const [mobileOpen, setMobileOpen] = useState(false);
     const [linksVisible, setLinksVisible] = useState(false);
-    const [pathname, setPathname] = useState(initialPathname);
+    const [pathname, setPathname] = useState(normalizePath(initialPathname));
     const [animateUnderline, setAnimateUnderline] = useState(true);
-    const lightBg = LIGHT_BG_PATHS.includes(pathname.replace(/\/$/, "") || "/");
+    const lightBg = LIGHT_BG_PATHS.includes(pathname);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -75,7 +77,7 @@ export default function HeaderNav({ pathname: initialPathname }: Props) {
         };
         const onPageLoad = () => {
             // pathname se setea sin animación (animateUnderline sigue false)
-            setPathname(window.location.pathname);
+            setPathname(normalizePath(window.location.pathname));
         };
         document.addEventListener("astro:before-swap", onBeforeSwap);
         document.addEventListener("astro:page-load", onPageLoad);
