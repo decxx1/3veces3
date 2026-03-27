@@ -104,7 +104,7 @@ export default function TeamCarousel() {
                             : "none",
                     }}
                 >
-                    {members.map((m) => (
+                    {members.map((m, i) => (
                         <div
                             key={m.name}
                             style={{ width: `${100 / members.length}%` }}
