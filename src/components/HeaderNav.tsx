@@ -14,16 +14,25 @@ interface Props {
 
 export default function HeaderNav({ pathname: initialPathname }: Props) {
     const [scrolled, setScrolled] = useState(false);
+    const prevScrolled = useRef(false);
+    const firstTime = useRef(true);
     const [mobileOpen, setMobileOpen] = useState(false);
-    const [linksVisible, setLinksVisible] = useState(true);
+    const [linksVisible, setLinksVisible] = useState(false);
     const [pathname, setPathname] = useState(initialPathname);
     const [animateUnderline, setAnimateUnderline] = useState(true);
-    const prevScrolled = useRef(false);
     const lightBg = LIGHT_BG_PATHS.includes(pathname.replace(/\/$/, "") || "/");
 
     useEffect(() => {
         const handleScroll = () => {
             const isScrolled = window.scrollY > 60;
+            if(isScrolled && firstTime.current) {
+                setScrolled(isScrolled);
+                prevScrolled.current = isScrolled;
+                setLinksVisible(true);
+                firstTime.current = false;
+                return;
+            }
+            firstTime.current = false;
             if (isScrolled !== prevScrolled.current) {
                 prevScrolled.current = isScrolled;
                 setLinksVisible(false);
@@ -31,8 +40,11 @@ export default function HeaderNav({ pathname: initialPathname }: Props) {
                     setScrolled(isScrolled);
                     setTimeout(() => setLinksVisible(true), 80);
                 }, 150);
+                return;
             }
+            setLinksVisible(true);
         };
+        handleScroll();
         window.addEventListener("scroll", handleScroll, { passive: true });
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
@@ -103,7 +115,7 @@ export default function HeaderNav({ pathname: initialPathname }: Props) {
                             alt="Tres Veces Tres"
                             className={[
                                 "block w-full transition-[opacity,transform] duration-400",
-                                scrolled ? "opacity-0 scale-75" : "opacity-100 scale-100",
+                                !scrolled && linksVisible ? "opacity-100" : "opacity-0",
                                 !scrolled && lightBg ? "invert" : "",
                             ].join(" ")}
                             style={{ transitionTimingFunction: scrolled ? "ease" : "cubic-bezier(0.34, 1.56, 0.64, 1)" }}
@@ -115,7 +127,7 @@ export default function HeaderNav({ pathname: initialPathname }: Props) {
                             aria-hidden="true"
                             className={[
                                 "absolute inset-0 block w-full transition-[opacity,transform] duration-400",
-                                scrolled ? "opacity-100 scale-100 translate-y-1" : "opacity-0 scale-10",
+                                scrolled && linksVisible ? "opacity-100 translate-y-1" : "opacity-0",
                             ].join(" ")}
                         />
                     </a>
