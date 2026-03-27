@@ -48,7 +48,7 @@ export default function HeaderNav() {
                     className={[
                         "container max-w-6xl mx-auto flex items-center justify-between px-8 transition-transform duration-400 ease-in-out",
                         scrolled
-                            ? "mt-4 py-2.5 rounded-full bg-black/85 backdrop-blur-md outline-1 outline-white/8"
+                            ? "mt-4 py-2.5 rounded-full bg-black/60 backdrop-blur-3xl outline-1 outline-white/8"
                             : "mt-0 py-6 rounded-none bg-transparent outline-1 outline-transparent",
                     ].join(" ")}
                 >
