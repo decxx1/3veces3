@@ -2,4 +2,4 @@
 import HeaderNav from "@/components/HeaderNav";
 ---
 
-<HeaderNav client:load />
+<HeaderNav client:load pathname={Astro.url.pathname} transition:persist />

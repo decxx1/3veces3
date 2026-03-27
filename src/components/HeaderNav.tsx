@@ -1,16 +1,25 @@
 import { useState, useEffect, useRef } from "react";
 
 const NAV_LINKS = [
-    { href: "#proyectos", label: "Proyectos" },
-    { href: "#servicios", label: "Servicios" },
-    { href: "#contacto", label: "Contacto" },
+    { href: "/proyectos", label: "Proyectos" },
+    { href: "/servicios", label: "Servicios" },
+    { href: "/contacto", label: "Contacto" },
 ];
 
-export default function HeaderNav() {
+const LIGHT_BG_PATHS = ["/proyectos"];
+
+interface Props {
+    pathname: string;
+}
+
+export default function HeaderNav({ pathname: initialPathname }: Props) {
     const [scrolled, setScrolled] = useState(false);
     const [mobileOpen, setMobileOpen] = useState(false);
     const [linksVisible, setLinksVisible] = useState(true);
+    const [pathname, setPathname] = useState(initialPathname);
+    const [animateUnderline, setAnimateUnderline] = useState(true);
     const prevScrolled = useRef(false);
+    const lightBg = LIGHT_BG_PATHS.includes(pathname.replace(/\/$/, "") || "/");
 
     useEffect(() => {
         const handleScroll = () => {
@@ -24,7 +33,6 @@ export default function HeaderNav() {
                 }, 150);
             }
         };
-
         window.addEventListener("scroll", handleScroll, { passive: true });
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
@@ -33,11 +41,39 @@ export default function HeaderNav() {
         if (scrolled) setMobileOpen(false);
     }, [scrolled]);
 
+    useEffect(() => {
+        const onBeforeSwap = () => {
+            setAnimateUnderline(false);
+            setPathname("");
+        };
+        const onPageLoad = () => {
+            // pathname se setea sin animación (animateUnderline sigue false)
+            setPathname(window.location.pathname);
+        };
+        document.addEventListener("astro:before-swap", onBeforeSwap);
+        document.addEventListener("astro:page-load", onPageLoad);
+        return () => {
+            document.removeEventListener("astro:before-swap", onBeforeSwap);
+            document.removeEventListener("astro:page-load", onPageLoad);
+        };
+    }, []);
+
+    // Una vez que pathname tiene el valor nuevo y animateUnderline=false,
+    // activamos la animación en el siguiente frame para que CSS la vea
+    useEffect(() => {
+        if (!animateUnderline && pathname !== "") {
+            const id = requestAnimationFrame(() => setAnimateUnderline(true));
+            return () => cancelAnimationFrame(id);
+        }
+    }, [animateUnderline, pathname]);
+
     const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-        e.preventDefault();
         setMobileOpen(false);
-        const target = document.querySelector(href);
-        if (target) target.scrollIntoView({ behavior: "smooth" });
+        if (href.startsWith("#")) {
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) target.scrollIntoView({ behavior: "smooth" });
+        }
     };
 
     return (
@@ -61,19 +97,20 @@ export default function HeaderNav() {
                         ].join(" ")}
                         style={{ transitionTimingFunction: "cubic-bezier(0.34, 1.56, 0.64, 1)" }}
                     >
-                        {/* Logo icono (logo-blanco.svg) — visible sin scroll */}
+                        {/* Logo icono — visible sin scroll */}
                         <img
-                            src="/images/logos/logo-blanco.svg"
+                            src="/images/logos/tresvecestres/logo-blanco.svg"
                             alt="Tres Veces Tres"
                             className={[
                                 "block w-full transition-[opacity,transform] duration-400",
                                 scrolled ? "opacity-0 scale-75" : "opacity-100 scale-100",
+                                !scrolled && lightBg ? "invert" : "",
                             ].join(" ")}
                             style={{ transitionTimingFunction: scrolled ? "ease" : "cubic-bezier(0.34, 1.56, 0.64, 1)" }}
                         />
-                        {/* Logo con letras (logo-blanco-letras.svg) — visible con scroll */}
+                        {/* Logo con letras — visible con scroll */}
                         <img
-                            src="/images/logos/logo-blanco-letras.svg"
+                            src="/images/logos/tresvecestres/logo-blanco-letras.svg"
                             alt=""
                             aria-hidden="true"
                             className={[
@@ -84,30 +121,42 @@ export default function HeaderNav() {
                     </a>
 
                     {/* Nav links — desktop */}
-                    <ul className="hidden md:flex gap-10 text-white text-sm font-semibold tracking-widest uppercase">
-                        {NAV_LINKS.map((link, i) => (
-                            <li
-                                key={link.href}
-                                className="transition-[opacity,transform]"
-                                style={{
-                                    opacity: linksVisible ? 1 : 0,
-                                    transform: linksVisible ? "translateY(0)" : "translateY(-10px)",
-                                    transitionDuration: linksVisible ? "0.4s, 0.5s" : "0.15s, 0.15s",
-                                    transitionDelay: linksVisible ? `${i * 60}ms` : "0ms",
-                                    transitionTimingFunction: linksVisible
-                                        ? `ease, cubic-bezier(0.34, 1.56, 0.64, 1)`
-                                        : "ease, ease",
-                                }}
-                            >
-                                <a
-                                    href={link.href}
-                                    onClick={(e) => handleNavClick(e, link.href)}
-                                    className="hover:opacity-70 transition-opacity"
+                    <ul className={`hidden md:flex gap-10 text-sm font-semibold tracking-widest uppercase ${scrolled ? "text-white" : lightBg ? "text-black" : "text-white"}`}>
+                        {NAV_LINKS.map((link, i) => {
+                            const isActive = pathname === link.href;
+                            return (
+                                <li
+                                    key={link.href}
+                                    className="transition-[opacity,transform]"
+                                    style={{
+                                        opacity: linksVisible ? 1 : 0,
+                                        transform: linksVisible ? "translateY(0)" : "translateY(-10px)",
+                                        transitionDuration: linksVisible ? "0.4s, 0.5s" : "0.15s, 0.15s",
+                                        transitionDelay: linksVisible ? `${i * 60}ms` : "0ms",
+                                        transitionTimingFunction: linksVisible
+                                            ? "ease, cubic-bezier(0.34, 1.56, 0.64, 1)"
+                                            : "ease, ease",
+                                    }}
                                 >
-                                    {link.label}
-                                </a>
-                            </li>
-                        ))}
+                                    <a
+                                        href={link.href}
+                                        onClick={(e) => handleNavClick(e, link.href)}
+                                        className="group relative pb-0.5"
+                                    >
+                                        {link.label}
+                                        <span
+                                            className={[
+                                                "absolute bottom-0 left-0 h-0.5 w-full origin-center rounded-full group-hover:scale-x-50",
+                                                isActive ? "scale-x-50" : "scale-x-0",
+                                                animateUnderline ? "transition-transform duration-300 ease-out" : "transition-none",
+                                            ].join(" ")}
+                                            style={{ backgroundColor: "currentColor" }}
+                                            aria-hidden="true"
+                                        />
+                                    </a>
+                                </li>
+                            );
+                        })}
                     </ul>
 
                     {/* Hamburger — mobile */}
@@ -118,21 +167,21 @@ export default function HeaderNav() {
                         aria-expanded={mobileOpen}
                     >
                         <span
-                            className="block w-6 h-0.5 bg-white rounded-full transition-transform duration-300"
+                            className={`block w-6 h-0.5 rounded-full transition-transform duration-300 ${scrolled || !lightBg ? "bg-white" : "bg-black"}`}
                             style={{
                                 transform: mobileOpen ? "rotate(45deg) translate(6px, 6px)" : "none",
                                 transitionTimingFunction: "cubic-bezier(0.34, 1.56, 0.64, 1)",
                             }}
                         />
                         <span
-                            className="block w-6 h-0.5 bg-white rounded-full transition-[opacity,transform] duration-300"
+                            className={`block w-6 h-0.5 rounded-full transition-[opacity,transform] duration-300 ${scrolled || !lightBg ? "bg-white" : "bg-black"}`}
                             style={{
                                 opacity: mobileOpen ? 0 : 1,
                                 transform: mobileOpen ? "scaleX(0)" : "scaleX(1)",
                             }}
                         />
                         <span
-                            className="block w-6 h-0.5 bg-white rounded-full transition-transform duration-300"
+                            className={`block w-6 h-0.5 rounded-full transition-transform duration-300 ${scrolled || !lightBg ? "bg-white" : "bg-black"}`}
                             style={{
                                 transform: mobileOpen ? "rotate(-45deg) translate(6px, -6px)" : "none",
                                 transitionTimingFunction: "cubic-bezier(0.34, 1.56, 0.64, 1)",
@@ -159,7 +208,7 @@ export default function HeaderNav() {
                                     transform: mobileOpen ? "translateX(0)" : "translateX(-16px)",
                                     transitionDuration: "0.35s, 0.4s",
                                     transitionDelay: mobileOpen ? `${120 + i * 80}ms` : "0ms",
-                                    transitionTimingFunction: `ease, cubic-bezier(0.34, 1.56, 0.64, 1)`,
+                                    transitionTimingFunction: "ease, cubic-bezier(0.34, 1.56, 0.64, 1)",
                                 }}
                             >
                                 <a
