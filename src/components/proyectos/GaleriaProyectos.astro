@@ -1,0 +1,136 @@
+---
+// GaleriaProyectos.astro — Project gallery with expand/shrink hover on two-column rows
+---
+
+<section class="galeria-proyectos w-full">
+
+  <!-- Row 1: redgroup — full width -->
+  <div class="group relative overflow-hidden h-[500px] cursor-pointer">
+    <img
+      src="/images/proyectos/bg-redgroup.png"
+      alt="Redgroup"
+      class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
+    />
+    <div class="absolute inset-0 bg-black/40 transition-colors duration-500 group-hover:bg-black/30"></div>
+    <div class="absolute inset-0 flex items-center justify-center">
+      <img
+        src="/images/logos/empresas/redgroup.svg"
+        alt="Redgroup logo"
+        class="w-[210px] max-w-[55%] brightness-0 invert drop-shadow-lg transition-transform duration-500 group-hover:scale-110"
+      />
+    </div>
+  </div>
+
+  <!-- Row 2: btobcomex + pacha-magma — two columns -->
+  <div class="duo-row flex h-[400px]">
+    <!-- btobcomex -->
+    <div class="duo-card group relative overflow-hidden cursor-pointer transition-[flex] duration-500 ease-in-out flex-[1]">
+      <img
+        src="/images/proyectos/bg-btobcomex.webp"
+        alt="BtoB Comex"
+        class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
+      />
+      <div class="absolute inset-0 bg-black/45 transition-colors duration-500 group-hover:bg-black/30"></div>
+      <div class="absolute inset-0 flex items-center justify-center">
+        <img
+          src="/images/logos/empresas/btobcomex.svg"
+          alt="BtoB Comex logo"
+          class="w-[190px] max-w-[55%] brightness-0 invert drop-shadow-lg transition-transform duration-500 group-hover:scale-110"
+        />
+      </div>
+    </div>
+    <!-- pacha-magma -->
+    <div class="duo-card group relative overflow-hidden cursor-pointer transition-[flex] duration-500 ease-in-out flex-[1]">
+      <img
+        src="/images/proyectos/bg-pacha-magma.png"
+        alt="Pacha Magma"
+        class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
+      />
+      <div class="absolute inset-0 bg-black/40 transition-colors duration-500 group-hover:bg-black/30"></div>
+      <div class="absolute inset-0 flex items-center justify-center">
+        <img
+          src="/images/logos/empresas/pacha-magma.svg"
+          alt="Pacha Magma logo"
+          class="w-[190px] max-w-[55%] brightness-0 invert drop-shadow-lg transition-transform duration-500 group-hover:scale-110"
+        />
+      </div>
+    </div>
+  </div>
+
+  <!-- Row 3: vodem — full width -->
+  <div class="group relative overflow-hidden h-[500px] cursor-pointer">
+    <img
+      src="/images/proyectos/bg-vodem.png"
+      alt="Vodem"
+      class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
+    />
+    <div class="absolute inset-0 bg-black/40 transition-colors duration-500 group-hover:bg-black/30"></div>
+    <div class="absolute inset-0 flex items-center justify-center">
+      <img
+        src="/images/logos/empresas/vodem.svg"
+        alt="Vodem logo"
+        class="w-[200px] max-w-[55%] brightness-0 invert drop-shadow-lg transition-transform duration-500 group-hover:scale-110"
+      />
+    </div>
+  </div>
+
+  <!-- Row 4: prosanitas + nexovitalis — two columns (gradient backgrounds) -->
+  <div class="duo-row flex h-[400px]">
+    <!-- prosanitas -->
+    <div class="duo-card group relative overflow-hidden cursor-pointer transition-[flex] duration-500 ease-in-out flex-[1] bg-gradient-to-br from-gray-400 to-gray-500">
+      <div class="absolute inset-0 bg-black/20 transition-colors duration-500 group-hover:bg-black/10"></div>
+      <div class="absolute inset-0 flex items-center justify-center">
+        <img
+          src="/images/logos/empresas/prosanitas.png"
+          alt="Prosanitas logo"
+          class="w-[200px] max-w-[55%] brightness-0 invert drop-shadow-lg transition-transform duration-500 group-hover:scale-110"
+        />
+      </div>
+    </div>
+    <!-- nexovitalis -->
+    <div class="duo-card group relative overflow-hidden cursor-pointer transition-[flex] duration-500 ease-in-out flex-[1] bg-gradient-to-br from-blue-900 to-blue-950">
+      <div class="absolute inset-0 bg-black/15 transition-colors duration-500 group-hover:bg-black/5"></div>
+      <div class="absolute inset-0 flex items-center justify-center">
+        <img
+          src="/images/logos/empresas/nexovitalis.png"
+          alt="Nexovitalis logo"
+          class="w-[200px] max-w-[55%] brightness-0 invert drop-shadow-lg transition-transform duration-500 group-hover:scale-110"
+        />
+      </div>
+    </div>
+  </div>
+
+  <!-- Row 5: atxona — full width -->
+  <div class="group relative overflow-hidden h-[500px] cursor-pointer">
+    <img
+      src="/images/proyectos/bg-atxona.png"
+      alt="Grupo Atxona"
+      class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
+    />
+    <div class="absolute inset-0 bg-black/40 transition-colors duration-500 group-hover:bg-black/30"></div>
+    <div class="absolute inset-0 flex items-center justify-center">
+      <img
+        src="/images/logos/empresas/atxona.svg"
+        alt="Grupo Atxona logo"
+        class="w-[210px] max-w-[55%] brightness-0 invert drop-shadow-lg transition-transform duration-500 group-hover:scale-110"
+      />
+    </div>
+  </div>
+
+</section>
+
+<style>
+  /* Two-column expand/shrink on hover using :has() */
+  .duo-row:has(.duo-card:first-child:hover) .duo-card:first-child {
+    flex: 1.6;
+  }
+  .duo-row:has(.duo-card:first-child:hover) .duo-card:last-child {
+    flex: 0.4;
+  }
+  .duo-row:has(.duo-card:last-child:hover) .duo-card:last-child {
+    flex: 1.6;
+  }
+  .duo-row:has(.duo-card:last-child:hover) .duo-card:first-child {
+    flex: 0.4;
+  }
+</style>
