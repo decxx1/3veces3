@@ -25,14 +25,25 @@ export default function HeaderNav({ pathname: initialPathname }: Props) {
     useEffect(() => {
         const handleScroll = () => {
             const isScrolled = window.scrollY > 60;
+            
+            if(!isScrolled && firstTime.current) {
+                firstTime.current = false;
+                setLinksVisible(true);
+
+                return;
+            }
+
             if(isScrolled && firstTime.current) {
                 setScrolled(isScrolled);
                 prevScrolled.current = isScrolled;
-                setLinksVisible(true);
                 firstTime.current = false;
+                setLinksVisible(true);
+
                 return;
             }
+
             firstTime.current = false;
+
             if (isScrolled !== prevScrolled.current) {
                 prevScrolled.current = isScrolled;
                 setLinksVisible(false);
@@ -40,11 +51,15 @@ export default function HeaderNav({ pathname: initialPathname }: Props) {
                     setScrolled(isScrolled);
                     setTimeout(() => setLinksVisible(true), 80);
                 }, 150);
+
                 return;
             }
-            setLinksVisible(true);
+
+            return;
         };
+
         handleScroll();
+
         window.addEventListener("scroll", handleScroll, { passive: true });
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
@@ -114,8 +129,8 @@ export default function HeaderNav({ pathname: initialPathname }: Props) {
                             src="/images/logos/tresvecestres/logo-blanco.svg"
                             alt="Tres Veces Tres"
                             className={[
-                                "block w-full transition-[opacity,transform] duration-400",
-                                !scrolled && linksVisible ? "opacity-100" : "opacity-0",
+                                "block w-full transition-[opacity,transform]",
+                                !scrolled && linksVisible ? "opacity-100 duration-400" : "opacity-0 duration-100",
                                 !scrolled && lightBg ? "invert" : "",
                             ].join(" ")}
                             style={{ transitionTimingFunction: scrolled ? "ease" : "cubic-bezier(0.34, 1.56, 0.64, 1)" }}
@@ -126,8 +141,8 @@ export default function HeaderNav({ pathname: initialPathname }: Props) {
                             alt=""
                             aria-hidden="true"
                             className={[
-                                "absolute inset-0 block w-full transition-[opacity,transform] duration-400",
-                                scrolled && linksVisible ? "opacity-100 translate-y-1" : "opacity-0",
+                                "absolute inset-0 block w-full transition-[opacity,transform]",
+                                scrolled && linksVisible ? "opacity-100 translate-y-1 duration-400" : "opacity-0 duration-100",
                             ].join(" ")}
                         />
                     </a>
@@ -139,16 +154,12 @@ export default function HeaderNav({ pathname: initialPathname }: Props) {
                             return (
                                 <li
                                     key={link.href}
-                                    className="transition-[opacity,transform]"
-                                    style={{
-                                        opacity: linksVisible ? 1 : 0,
-                                        transform: linksVisible ? "translateY(0)" : "translateY(-10px)",
-                                        transitionDuration: linksVisible ? "0.4s, 0.5s" : "0.15s, 0.15s",
-                                        transitionDelay: linksVisible ? `${i * 60}ms` : "0ms",
-                                        transitionTimingFunction: linksVisible
-                                            ? "ease, cubic-bezier(0.34, 1.56, 0.64, 1)"
-                                            : "ease, ease",
-                                    }}
+                                    className={`
+                                        ${linksVisible 
+                                            ? "transition-[opacity,transform] opacity-100 translate-y-0 duration-400 delay-100" 
+                                            : "transition-opacity opacity-0 -translate-y-2.5 duration-0 delay-0"
+                                        }
+                                    `}
                                 >
                                     <a
                                         href={link.href}
