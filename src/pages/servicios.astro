@@ -1,6 +1,6 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import HeroServicios from '@/components/servicios/HeroServicios.astro';
+import HeroGradient from '@/components/HeroGradient.astro';
 import ServiciosGrid from '@/components/servicios/ServiciosGrid.astro';
 ---
 
@@ -10,6 +10,8 @@ import ServiciosGrid from '@/components/servicios/ServiciosGrid.astro';
     metaDescription="Conocé los servicios de comunicación y marketing de Tres Veces Tres."
     metaImg=""
 >
-    <HeroServicios />
+    <HeroGradient>
+        Trabajamos para <em class="font-bold not-italic">multiplicar el impacto</em> de cada proyecto.
+    </HeroGradient>
     <ServiciosGrid />
 </Layout>
