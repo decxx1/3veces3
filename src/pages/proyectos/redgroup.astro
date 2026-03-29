@@ -1,0 +1,33 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import HeroProyecto from '@/components/proyectos/HeroProyecto.astro';
+import MockupsDuo from '@/components/proyectos/redgroup/MockupsDuo.astro';
+import FlyersTres from '@/components/proyectos/redgroup/FlyersTres.astro';
+import HeyReds from '@/components/proyectos/redgroup/HeyReds.astro';
+---
+
+<Layout
+    title="Redgroup | Tres Veces Tres"
+    canonical="https://tresvecestres.com.ar/proyectos/redgroup"
+    metaDescription="Conocé el trabajo de Tres Veces Tres para Redgroup: diseño web, comunicación digital y estrategia de marca."
+    metaImg=""
+    preLoad={[
+        { as: "image", href: "/images/proyectos/redgroup/hero.webp", type: "image/webp" }
+    ]}
+>
+    <HeroProyecto
+        bgImage="/images/proyectos/redgroup/hero.webp"
+        logo="/images/logos/empresas/redgroup.svg"
+        alt="Redgroup"
+    >
+        <p class="text-lg lg:text-xl leading-relaxed text-white italic">
+            Diseño y desarrollo web.<br />
+            Estrategia y gestión de comunicación digital.<br />
+            Soporte y diseño de comunicación interna.<br />
+            Pauta publicitaria.
+        </p>
+    </HeroProyecto>
+    <MockupsDuo />
+    <FlyersTres />
+    <HeyReds />
+</Layout>
