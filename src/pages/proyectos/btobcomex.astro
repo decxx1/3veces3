@@ -1,0 +1,33 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import HeroProyecto from '@/components/proyectos/HeroProyecto.astro';
+import LogoDev from '@/components/proyectos/btobcomex/LogoDev.astro';
+import MockupBtoB from '@/components/proyectos/btobcomex/MockupBtoB.astro';
+---
+
+<Layout
+    title="B TO B Comex | Tres Veces Tres"
+    canonical="https://tresvecestres.com.ar/proyectos/btobcomex"
+    metaDescription="Conocé el trabajo de Tres Veces Tres para B TO B Comex: investigación de mercado, desarrollo de marca, comunicación digital y diseño web."
+    metaImg=""
+    preLoad={[
+        { as: "image", href: "/images/proyectos/btobcomex/canton-fair-2014-china.webp", type: "image/webp" }
+    ]}
+>
+    <HeroProyecto
+        bgImage="/images/proyectos/btobcomex/canton-fair-2014-china.webp"
+        logo="/images/logos/empresas/btobcomex.svg"
+        alt="B TO B Comex"
+    >
+        <p class="text-lg lg:text-xl leading-relaxed text-white italic">
+            Investigación de mercado y diagnóstico.<br />
+            Desarrollo de marca.<br />
+            Estrategia y gestión de comunicación digital.<br />
+            Pauta publicitaria.<br />
+            Diseño y desarrollo web sostenible.
+        </p>
+    </HeroProyecto>
+    <LogoDev />
+    <MockupBtoB />
+
+</Layout>
