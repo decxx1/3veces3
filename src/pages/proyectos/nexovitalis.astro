@@ -1,0 +1,28 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import HeroProyecto from '@/components/proyectos/HeroProyecto.astro';
+import SocialMediaNexo from '@/components/proyectos/nexovitalis/SocialMediaNexo.astro';
+---
+
+<Layout
+    title="Nexovitalis | Tres Veces Tres"
+    canonical="https://tresvecestres.com.ar/proyectos/nexovitalis"
+    metaDescription="Conocé el trabajo de Tres Veces Tres para Nexovitalis: estrategia y gestión de comunicación digital, diseño e implementación de estrategias de impacto positivo."
+    metaImg=""
+    preLoad={[
+        { as: "image", href: "/images/proyectos/nexovitalis/hero.webp", type: "image/webp" }
+    ]}
+>
+    <HeroProyecto
+        bgImage="/images/proyectos/nexovitalis/hero.webp"
+        logo="/images/logos/empresas/nexovitalis.png"
+        alt="Nexovitalis"
+    >
+        <p class="text-lg lg:text-xl leading-relaxed text-white italic">
+            Estrategia y gestión de comunicación digital.<br />
+            Diseño e implementación de estrategias<br />
+            de impacto positivo.
+        </p>
+    </HeroProyecto>
+    <SocialMediaNexo />
+</Layout>

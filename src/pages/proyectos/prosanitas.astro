@@ -1,0 +1,26 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import HeroProyecto from '@/components/proyectos/HeroProyecto.astro';
+---
+
+<Layout
+    title="Prosanitas | Tres Veces Tres"
+    canonical="https://tresvecestres.com.ar/proyectos/prosanitas"
+    metaDescription="Conocé el trabajo de Tres Veces Tres para Prosanitas: estrategia y gestión de comunicación digital, diseño e implementación de estrategias de impacto positivo."
+    metaImg=""
+    preLoad={[
+        { as: "image", href: "/images/proyectos/prosanitas/hero.webp", type: "image/webp" }
+    ]}
+>
+    <HeroProyecto
+        bgImage="/images/proyectos/prosanitas/hero.webp"
+        logo="/images/logos/empresas/prosanitas.png"
+        alt="Prosanitas"
+    >
+        <p class="text-lg lg:text-xl leading-relaxed text-white italic">
+            Estrategia y gestión de comunicación digital.<br />
+            Diseño e implementación de estrategias<br />
+            de impacto positivo.
+        </p>
+    </HeroProyecto>
+</Layout>
