@@ -11,7 +11,7 @@ interface Props {
 const { bg, gradientClass = '', logo, alt, logoWidth = 'w-52', href = '#' } = Astro.props;
 ---
 
-<a href={href} class:list={['proyecto-card group relative overflow-hidden w-full h-full cursor-pointer', gradientClass]}>
+<a href={href} class:list={['proyecto-card block group relative overflow-hidden w-full h-full cursor-pointer', gradientClass]}>
   {bg && (
     <img
       src={bg}

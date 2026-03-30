@@ -1,7 +1,6 @@
 ---
 import HeaderNav from "@/components/HeaderNav";
 const path = Astro.url.pathname;
-console.log("Current path:", path);
 ---
 
 <HeaderNav client:load pathname={path} transition:persist />
