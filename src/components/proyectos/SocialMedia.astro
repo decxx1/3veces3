@@ -1,0 +1,20 @@
+---
+interface Props {
+    image: string;
+    alt: string;
+}
+
+const { image, alt } = Astro.props;
+---
+<section class="mt-8 sm:mt-24 pb-24 container mx-auto px-8">
+    <section class="text-center mb-16 sm:mb-22">
+        <h2 class="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl max-w-xl mx-auto font-light">Estrategia y gestión de comunicación digital</h2>
+    </section>
+    <div class="flex justify-center">
+        <img
+            src={image}
+            alt={alt}
+            class="w-full h-full md:w-auto sm:h-auto md:max-h-130 xl:max-h-190 rounded-sm"
+        />
+    </div>
+</section>
