@@ -1,0 +1,39 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import HeroProyecto from '@/components/proyectos/HeroProyecto.astro';
+import LogoDev from '@/components/proyectos/LogoDev.astro';
+import InspirationVodem from '@/components/proyectos/vodem/InspirationVodem.astro';
+---
+
+<Layout
+    title="Vodem | Tres Veces Tres"
+    canonical="https://tresvecestres.com.ar/proyectos/vodem"
+    metaDescription="Conocé el trabajo de Tres Veces Tres para Vodem Obras Industriales: diagnóstico, creatividad y desarrollo de marca, estrategia digital y diseño web sostenible."
+    metaImg=""
+    preLoad={[
+        { as: "image", href: "/images/proyectos/vodem/hero.webp", type: "image/webp" }
+    ]}
+>
+    <HeroProyecto
+        bgImage="/images/proyectos/vodem/hero.webp"
+        logo="/images/logos/empresas/vodem.svg"
+        alt="Vodem Obras Industriales"
+    >
+        <p class="text-lg lg:text-xl leading-relaxed text-white italic">
+            Diagnóstico.<br />
+            Creatividad y desarrollo de marca.<br />
+            Estrategia y gestión de comunicación digital.<br />
+            Diseño y desarrollo web sostenible.
+        </p>
+    </HeroProyecto>
+    <LogoDev
+        logo="/images/proyectos/vodem/logo-dev.svg"
+        alt="Construcción y proporciones del logo Vodem"
+        reverse
+    >
+        Creatividad
+        y desarrollo
+        de marca
+    </LogoDev>
+    <InspirationVodem />
+</Layout>

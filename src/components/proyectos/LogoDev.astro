@@ -1,0 +1,26 @@
+---
+interface Props {
+    logo: string;
+    alt: string;
+    reverse?: boolean;
+}
+
+const { logo, alt, reverse = false } = Astro.props;
+---
+
+<section class="lg:container py-24 px-8 mx-auto">
+    <div class={`flex flex-col gap-12 lg:gap-20 lg:max-w-5xl mx-auto ${reverse ? "md:flex-row-reverse" : "md:flex-row"}`}>
+        <div class="w-full md:w-1/2">
+            <img
+                src={logo}
+                alt={alt}
+                class="w-full"
+            />
+        </div>
+        <div class={`w-full md:w-1/2 flex items-start ${reverse ? "justify-start" : "justify-end"}`}>
+            <div class={`text-5xl max-w-sm lg:text-6xl font-light leading-tight md:leading-snug tracking-tight text-gray-800 ${reverse ? "text-left" : "text-right"}`}>
+                <slot />
+            </div>
+        </div>
+    </div>
+</section>
