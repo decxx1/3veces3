@@ -1,0 +1,40 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import HeroProyecto from '@/components/proyectos/HeroProyecto.astro';
+import LogoDev from '@/components/proyectos/LogoDev.astro';
+import LogoComposition from '@/components/proyectos/pacha-magma/LogoComposition.astro';
+---
+
+<Layout
+    title="Pacha Magma | Tres Veces Tres"
+    canonical="https://tresvecestres.com.ar/proyectos/pacha-magma"
+    metaDescription="Conocé el trabajo de Tres Veces Tres para Pacha Magma: investigación de mercado, desarrollo de marca, registro de marca y patentes, y estrategia de comunicación digital."
+    metaImg=""
+    preLoad={[
+        { as: "image", href: "/images/proyectos/bg-pacha-magma.webp", type: "image/webp" }
+    ]}
+>
+    <HeroProyecto
+        bgImage="/images/proyectos/bg-pacha-magma.webp"
+        logo="/images/logos/empresas/pacha-magma.svg"
+        alt="Pacha Magma Conexión Geológica"
+        width="md:w-48"
+    >
+        <p class="text-lg lg:text-xl leading-relaxed text-white italic">
+            Investigación de mercado y diagnóstico.<br />
+            Creatividad y desarrollo de marca.<br />
+            Registro de marca y patentes.<br />
+            Estrategia de comunicación digital.
+        </p>
+    </HeroProyecto>
+    <LogoDev
+        logo="/images/proyectos/pacha-magma/logo-dev.svg"
+        alt="Construcción y proporciones del logo Pacha Magma"
+        reverse
+    >
+        Creatividad
+        y desarrollo
+        de marca
+    </LogoDev>
+    <LogoComposition />
+</Layout>
