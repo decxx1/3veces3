@@ -1,0 +1,29 @@
+---
+interface Props {
+    image: string;
+    alt: string;
+    size?: "sm" | "md" | "lg";
+}
+
+const { image, alt, size = "lg" } = Astro.props;
+---
+<section class="text-center mt-8 sm:mt-32 mb-16 sm:mb-22">
+    <h2 class="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl max-w-xl mx-auto font-light">Estrategia y gestión de comunicación digital</h2>
+</section>
+<section class="mb-24 h-full relative">
+    <div class:list={[
+        "absolute z-10 w-600 left-0 top-1/2 -translate-y-1/2 bg-[#373737]",
+        size === "lg" && "h-96 sm:h-120 md:h-100 lg:h-110 xl:h-150",
+        size === "md" && "h-40 sm:h-72 md:h-80 lg:h-96 xl:h-120",
+        size === "sm" && "h-32 sm:h-56 md:h-72 lg:h-80 xl:h-110",
+    ]}>
+    </div>
+    
+    <div class="container mx-auto sm:px-4 flex items-center justify-center relative">
+        <img
+            src={image}
+            alt={alt}
+            class="z-20 relative w-full h-full md:w-auto sm:h-auto md:max-h-130 xl:max-h-190 rounded-sm"
+        />
+    </div>
+</section>

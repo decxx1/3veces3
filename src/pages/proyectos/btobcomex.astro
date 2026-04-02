@@ -2,7 +2,7 @@
 import Layout from '@/layouts/Layout.astro';
 import HeroProyecto from '@/components/proyectos/HeroProyecto.astro';
 import LogoDev from '@/components/proyectos/LogoDev.astro';
-import MockupBtoB from '@/components/proyectos/btobcomex/MockupBtoB.astro';
+import MockupRight from '@/components/proyectos/MockupRight.astro';
 import SocialMediaBtoB from '@/components/proyectos/btobcomex/SocialMediaBtoB.astro';
 import WebSostenibleBtoB from '@/components/proyectos/btobcomex/WebSostenibleBtoB.astro';
 ---
@@ -37,7 +37,11 @@ import WebSostenibleBtoB from '@/components/proyectos/btobcomex/WebSostenibleBto
         y desarrollo
         de marca
     </LogoDev>
-    <MockupBtoB />
+    <MockupRight 
+        image="/images/proyectos/btobcomex/mockup.webp"
+        alt="mockup del sitio web de B TO B Comex en laptop y móvil"
+        size="lg"
+    />
     <SocialMediaBtoB />
     <WebSostenibleBtoB />
 </Layout>

@@ -3,6 +3,8 @@ import Layout from '@/layouts/Layout.astro';
 import HeroProyecto from '@/components/proyectos/HeroProyecto.astro';
 import LogoDev from '@/components/proyectos/LogoDev.astro';
 import LogoComposition from '@/components/proyectos/pacha-magma/LogoComposition.astro';
+import MockupRight from '@/components/proyectos/MockupRight.astro';
+import RedesPachaMagma from '@/components/proyectos/pacha-magma/RedesPachaMagma.astro';
 ---
 
 <Layout
@@ -37,4 +39,15 @@ import LogoComposition from '@/components/proyectos/pacha-magma/LogoComposition.
         de marca
     </LogoDev>
     <LogoComposition />
+    <MockupRight 
+        image="/images/proyectos/pacha-magma/mockup.webp"
+        alt="mockup del logo de Pacha Magma en laptop y móvil"
+        size="md"
+    />
+    <RedesPachaMagma
+        image="/images/proyectos/pacha-magma/redes.webp"
+        alt="mockup de redes de Pacha Magma en móvil"
+        size="lg"
+    />
+
 </Layout>
