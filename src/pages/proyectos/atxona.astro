@@ -1,0 +1,53 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import HeroProyecto from '@/components/proyectos/HeroProyecto.astro';
+import LogoDev from '@/components/proyectos/LogoDev.astro';
+import LogoComposition from '@/components/proyectos/LogoComposition.astro';
+import MockupAtxona from '@/components/proyectos/atxona/MockupAtxona.astro';
+import SocialMedia from '@/components/proyectos/SocialMedia.astro';
+import WebSostenible from '@/components/proyectos/WebSostenible.astro';
+---
+<Layout
+    title="Atxona | Tres Veces Tres"
+    canonical="https://tresvecestres.com.ar/proyectos/atxona"
+    metaDescription="Conocé el trabajo de Tres Veces Tres para Atxona: investigación de mercado, creatividad, estrategia de comunicación y diseño web sostenible."
+    metaImg=""
+    preLoad={[
+        { as: "image", href: "/images/proyectos/bg-atxona.webp", type: "image/webp" }
+    ]}
+>
+    <HeroProyecto
+        bgImage="/images/proyectos/bg-atxona.webp"
+        logo="/images/logos/empresas/atxona.svg"
+        alt="Atxona"
+    >
+        <p class="text-lg lg:text-xl leading-relaxed text-white italic">
+            Investigación de mercado y diagnóstico.<br />
+            Creatividad y desarrollo de marca.<br />
+            Estrategia de comunicación digital.<br />
+            Diseño y desarrollo web sostenible.
+        </p>
+    </HeroProyecto>
+    <LogoDev
+        logo="/images/proyectos/atxona/logo-dev.svg"
+        alt="Construcción y proporciones del logo Atxona"
+    >
+        Creatividad
+        y desarrollo
+        de marca
+    </LogoDev>
+    <LogoComposition
+        logo="/images/proyectos/atxona/inspiracion.svg"
+        alt="Composición del logo de Atxona"
+        size="sm"
+    />
+    <MockupAtxona />
+    <SocialMedia
+        image="/images/proyectos/atxona/redes.webp"
+        alt="redes sociales de Atxona"
+    />
+    <WebSostenible
+        image="/images/proyectos/atxona/web.webp"
+        alt="sitio web de Atxona"
+    />
+</Layout>

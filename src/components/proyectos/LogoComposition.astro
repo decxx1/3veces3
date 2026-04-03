@@ -1,0 +1,24 @@
+---
+interface Props {
+    logo: string;
+    alt: string;
+    size?: string;
+}
+
+const { logo, alt, size = "lg" } = Astro.props;
+---
+<section class="mt-4 sm:mt-10 pb-24 container mx-auto px-8">
+    <section class="text-center mb-12 sm:mb-16">
+        <h2 class="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl max-w-xl mx-auto font-light">Íconos que conforman el Isotipo</h2>
+    </section>
+    <div class="flex justify-center">
+        <img
+            src={logo}
+            alt={alt}
+            class:list={[
+                "w-full h-full md:w-auto sm:h-auto rounded-sm",
+                size === "lg" ? "md:max-h-130 xl:max-h-190" : "md:max-h-110 xl:max-h-150"
+            ]}
+        />
+    </div>
+</section>
