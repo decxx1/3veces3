@@ -14,6 +14,7 @@ const { image, alt } = Astro.props;
         <img
             src={image}
             alt={alt}
+            loading="lazy"
             class="w-full h-full md:w-auto sm:h-auto md:max-h-130 xl:max-h-190 rounded-sm"
         />
     </div>

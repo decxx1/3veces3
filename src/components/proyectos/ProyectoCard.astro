@@ -6,17 +6,20 @@ interface Props {
   alt: string;         // alt del logo
   logoWidth?: string;  // clase de ancho del logo, ej: "w-52"
   href?: string;       // enlace al que apunta la tarjeta (opcional)
+  transitionName?: string; // nombre para el transition:name
 }
 
-const { bg, gradientClass = '', logo, alt, logoWidth = 'w-52', href = '#' } = Astro.props;
+const { bg, gradientClass = '', logo, alt, logoWidth = 'w-52', href = '#', transitionName } = Astro.props;
 ---
 
 <a href={href} class:list={['proyecto-card block group relative overflow-hidden w-full h-full cursor-pointer', gradientClass]}>
   {bg && (
     <img
       src={bg}
-      alt=""
+      transition:name={transitionName}
+      alt={'Imagen de ' + alt}
       aria-hidden="true"
+      loading="lazy"
       class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
     />
   )}
@@ -25,6 +28,7 @@ const { bg, gradientClass = '', logo, alt, logoWidth = 'w-52', href = '#' } = As
     <img
       src={logo}
       alt={alt}
+      loading="lazy"
       class:list={[logoWidth, 'max-w-[55%] drop-shadow-xl transition-transform duration-500 group-hover:scale-110']}
     />
   </div>

@@ -15,6 +15,7 @@ const { logo, alt, size = "lg" } = Astro.props;
         <img
             src={logo}
             alt={alt}
+            loading="lazy"
             class:list={[
                 "w-full h-full md:w-auto sm:h-auto rounded-sm",
                 size === "lg" ? "md:max-h-130 xl:max-h-190" : "md:max-h-110 xl:max-h-150"

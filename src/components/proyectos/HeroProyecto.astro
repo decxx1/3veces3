@@ -4,17 +4,20 @@ interface Props {
     logo: string;
     alt: string;
     width?: string;
+    transitionName?: string;
 }
 
-const { bgImage, logo, alt, width } = Astro.props;
+const { bgImage, logo, alt, width, transitionName = bgImage } = Astro.props;
 ---
 
 <section class="relative flex h-160 sm:h-120 items-center overflow-hidden pt-32">
     <img
         src={bgImage}
-        alt=""
+        alt={'Portada de ' + alt}
         aria-hidden="true"
+        loading="eager"
         class="absolute inset-0 h-full w-full object-cover"
+        transition:name={transitionName}
     />
     <div class="absolute inset-0 bg-black/50"></div>
     <div class="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center gap-8 px-8 md:flex-row md:justify-between">
@@ -27,6 +30,7 @@ const { bgImage, logo, alt, width } = Astro.props;
             <img
                 src={logo}
                 alt={alt}
+                loading="lazy"
                 class="w-full max-w-xs drop-shadow-xl"
             />
         </div>

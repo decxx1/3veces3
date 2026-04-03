@@ -11,6 +11,7 @@ export default function TeamCard({ name, title, image }: Props) {
                 <img
                     src={image}
                     alt={name}
+                    loading="lazy"
                     className="w-full aspect-3/4 object-cover object-top"
                 />
             </div>

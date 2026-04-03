@@ -129,7 +129,8 @@ export default function HeaderNav({ pathname: initialPathname }: Props) {
                         {/* Logo icono — visible sin scroll */}
                         <img
                             src="/images/logos/tresvecestres/logo-blanco.svg"
-                            alt="Tres Veces Tres"
+                            alt="Tres Veces Tres logo con ícono"
+                            loading="lazy"
                             className={[
                                 "block w-full transition-[opacity,transform]",
                                 !scrolled && linksVisible ? "opacity-100 duration-400" : "opacity-0 duration-100",
@@ -140,7 +141,8 @@ export default function HeaderNav({ pathname: initialPathname }: Props) {
                         {/* Logo con letras — visible con scroll */}
                         <img
                             src="/images/logos/tresvecestres/logo-blanco-letras.svg"
-                            alt=""
+                            loading="lazy"
+                            alt="Tres Veces Tres logo con letras"
                             aria-hidden="true"
                             className={[
                                 "absolute inset-0 block w-full transition-[opacity,transform]",
