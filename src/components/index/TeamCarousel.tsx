@@ -5,17 +5,17 @@ const members = [
     {
         name: "Fausto Manrique",
         title: "Co - Fundador | Director de Marketing",
-        image: "/images/equipo/fausto.png",
+        image: "/images/equipo/fausto.webp",
     },
     {
         name: "Martina Bustos",
         title: "Co - Fundadora | Directora de Comunicación",
-        image: "/images/equipo/martina.png",
+        image: "/images/equipo/martina.webp",
     },
     {
         name: "Yasmina Muñoz",
         title: "Diseñadora Gráfica Senior",
-        image: "/images/equipo/yasmina.png",
+        image: "/images/equipo/yasmina.webp",
     },
 ];
 
