@@ -12,7 +12,7 @@ const { image, alt, size = "lg" } = Astro.props;
 </section>
 <section class="mb-24 h-full relative">
     <div class:list={[
-        "absolute z-10 w-600 left-0 top-1/2 -translate-y-1/2 bg-[#373737]",
+        "absolute z-10 w-full left-0 top-1/2 -translate-y-1/2 bg-[#373737]",
         size === "lg" && "h-96 sm:h-120 md:h-100 lg:h-110 xl:h-150",
         size === "md" && "h-40 sm:h-72 md:h-80 lg:h-96 xl:h-120",
         size === "sm" && "h-32 sm:h-56 md:h-72 lg:h-80 xl:h-110",
