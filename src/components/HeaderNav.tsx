@@ -122,14 +122,14 @@ export default function HeaderNav({ pathname: initialPathname }: Props) {
                         href="/"
                         className={[
                             "relative block shrink-0 transition-[width] duration-450",
-                            scrolled ? "w-15" : "w-35",
+                            scrolled ? "w-15" : "w-28",
                         ].join(" ")}
                         style={{ transitionTimingFunction: "cubic-bezier(0.34, 1.56, 0.64, 1)" }}
                     >
                         {/* Logo icono — visible sin scroll */}
                         <img
-                            src="/images/logos/tresvecestres/logo-blanco.svg"
-                            alt="Tres Veces Tres logo con ícono"
+                            src="/images/logos/tresvecestres/logo-blanco-letras.svg"
+                            alt="Tres Veces Tres logo con letras"
                             loading="lazy"
                             className={[
                                 "block w-full transition-[opacity,transform]",
@@ -146,7 +146,7 @@ export default function HeaderNav({ pathname: initialPathname }: Props) {
                             aria-hidden="true"
                             className={[
                                 "absolute inset-0 block w-full transition-[opacity,transform]",
-                                scrolled && linksVisible ? "opacity-100 translate-y-1 duration-400" : "opacity-0 duration-100",
+                                scrolled && linksVisible ? "opacity-100 duration-400" : "opacity-0 duration-100",
                             ].join(" ")}
                         />
                     </a>
