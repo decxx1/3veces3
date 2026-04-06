@@ -69,13 +69,36 @@ const { title, canonical, metaDescription, metaImg, preLoad } = Astro.props;
 		<ClientRouter />
 	</head>
 	<body
-		class="font-montserrat scrollbar scrollbar-w-3 scrollbar-thumb-rounded-[0.25rem] scrollbar-track-gray-200 scrollbar-thumb-gray-400"
+		class="font-montserrat scrollbar scrollbar-w-3 scrollbar-thumb-rounded-[0.25rem] scrollbar-track-gray-200 scrollbar-thumb-gray-400 bg-black"
 	>
-		<Header />
-		<main>
-			<slot />
-		</main>
+		<div id="main-content-wrapper" class="relative z-10 bg-white transition-[margin-bottom] duration-300">
+			<Header />
+			<main>
+				<slot />
+			</main>
+		</div>
 		<Footer />
+
+		<script>
+			function adjustFooterMargin() {
+				const footer = document.getElementById('reveal-footer');
+				const wrapper = document.getElementById('main-content-wrapper');
+				
+				if (footer && wrapper) {
+					// Get the actual rendered height of the footer
+					const footerHeight = footer.offsetHeight;
+					// Apply it as margin-bottom to the main content wrapper
+					wrapper.style.marginBottom = `${footerHeight}px`;
+					
+					// Optional: unhide footer once margin is applied to avoid flash
+					footer.style.opacity = '1';
+				}
+			}
+
+			// Run on mount and resize
+			document.addEventListener('astro:page-load', adjustFooterMargin);
+			window.addEventListener('resize', adjustFooterMargin);
+		</script>
 	</body>
 </html>
 
