@@ -2,6 +2,7 @@
 import Layout from '@/layouts/Layout.astro';
 import HeroProyecto from '@/components/proyectos/HeroProyecto.astro';
 import SocialMedia from '@/components/proyectos/SocialMedia.astro';
+import OtrosProyectos from '@/components/proyectos/OtrosProyectos.astro';
 ---
 
 <Layout
@@ -29,4 +30,5 @@ import SocialMedia from '@/components/proyectos/SocialMedia.astro';
         image="/images/proyectos/prosanitas/redes.webp"
         alt="redes sociales de Prosanitas"
     />
+    <OtrosProyectos exclude="prosanitas" />
 </Layout>

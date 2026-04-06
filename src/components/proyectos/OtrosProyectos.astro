@@ -1,0 +1,122 @@
+---
+import ProyectoCard from './ProyectoCard.astro';
+
+interface Project {
+  id: string;
+  bg?: string;
+  gradientClass?: string;
+  logo: string;
+  alt: string;
+  logoWidth: string;
+  href: string;
+  transitionName: string;
+}
+
+interface Props {
+  exclude?: string;
+}
+
+const { exclude } = Astro.props;
+
+const allProjects: Project[] = [
+  {
+    id: 'redgroup',
+    bg: '/images/proyectos/bg-redgroup.webp',
+    logo: '/images/logos/empresas/redgroup.svg',
+    alt: 'Redgroup',
+    logoWidth: 'w-48',
+    href: '/proyectos/redgroup',
+    transitionName: 'redgroup',
+  },
+  {
+    id: 'btobcomex',
+    bg: '/images/proyectos/bg-btobcomex.webp',
+    logo: '/images/logos/empresas/btobcomex.svg',
+    alt: 'BtoB Comex',
+    logoWidth: 'w-56',
+    href: '/proyectos/btobcomex',
+    transitionName: 'btobcomex',
+  },
+  {
+    id: 'pacha-magma',
+    bg: '/images/proyectos/bg-pacha-magma.webp',
+    logo: '/images/logos/empresas/pacha-magma.svg',
+    alt: 'Pacha Magma',
+    logoWidth: 'w-40',
+    href: '/proyectos/pacha-magma',
+    transitionName: 'pacha-magma',
+  },
+  {
+    id: 'vodem',
+    bg: '/images/proyectos/bg-vodem.webp',
+    logo: '/images/logos/empresas/vodem.svg',
+    alt: 'Vodem',
+    logoWidth: 'w-44',
+    href: '/proyectos/vodem',
+    transitionName: 'vodem',
+  },
+  {
+    id: 'prosanitas',
+    gradientClass: 'bg-linear-to-br from-gray-400 to-gray-500',
+    logo: '/images/logos/empresas/prosanitas.png',
+    alt: 'Prosanitas',
+    logoWidth: 'w-44',
+    href: '/proyectos/prosanitas',
+    transitionName: 'prosanitas',
+  },
+  {
+    id: 'nexovitalis',
+    gradientClass: 'bg-linear-to-br from-blue-900 to-blue-950',
+    logo: '/images/logos/empresas/nexovitalis.png',
+    alt: 'Nexovitalis',
+    logoWidth: 'w-48',
+    href: '/proyectos/nexovitalis',
+    transitionName: 'nexovitalis',
+  },
+  {
+    id: 'atxona',
+    bg: '/images/proyectos/bg-atxona.webp',
+    logo: '/images/logos/empresas/atxona.svg',
+    alt: 'Grupo Atxona',
+    logoWidth: 'w-64',
+    href: '/proyectos/atxona',
+    transitionName: 'atxona',
+  },
+];
+
+const currentIndex = allProjects.findIndex(p => p.id === exclude);
+const total = allProjects.length;
+
+// Obtener los 3 siguientes proyectos (con wrap-around al final)
+const nextIndices = [
+  (currentIndex + 1) % total,
+  (currentIndex + 2) % total,
+  (currentIndex + 3) % total,
+];
+
+const selectedProjects = nextIndices.map(i => allProjects[i]);
+---
+
+<section class="w-full bg-white py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-2xl sm:text-3xl font-light text-gray-800 mb-10 sm:mb-12 text-center tracking-tight">
+      Otros proyectos de interés
+    </h2>
+    
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {selectedProjects.map(project => (
+        <div class="relative overflow-hidden h-72 sm:h-80">
+          <ProyectoCard
+            bg={project.bg}
+            gradientClass={project.gradientClass}
+            logo={project.logo}
+            alt={project.alt}
+            logoWidth={project.logoWidth}
+            href={project.href}
+            transitionName={project.transitionName}
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
