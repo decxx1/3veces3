@@ -1,6 +1,6 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import HeroProyectos from '@/components/proyectos/HeroProyectos.astro';
+import HeroGradient from '@/components/HeroGradient.astro';
 import GaleriaProyectos from '@/components/proyectos/GaleriaProyectos.astro';
 ---
 
@@ -10,6 +10,9 @@ import GaleriaProyectos from '@/components/proyectos/GaleriaProyectos.astro';
     metaDescription="Conocé los proyectos de comunicación y marketing de Tres Veces Tres."
     metaImg=""
 >
-    <HeroProyectos />
+    <HeroGradient>
+        <em class="font-semibold sm:font-bold not-italic">Comunicar</em> para conectar. <br/>
+        <em class="font-semibold sm:font-bold not-italic">Conectar</em> para transformar.
+    </HeroGradient>
     <GaleriaProyectos />
 </Layout>

@@ -6,8 +6,8 @@ const NAV_LINKS = [
     { href: "/contacto", label: "Contacto" },
 ];
 
-const LIGHT_BG_PATHS = ["/proyectos"];
-
+//esto está deshabilitado, es para poner las letras y logo de color negro al inicio por si tenemos un hero blanco
+const LIGHT_BG_PATHS = ["/proyectos2@"]; 
 const normalizePath = (p: string) => p.replace(/\/$/, "") || "/";
 
 interface Props {
