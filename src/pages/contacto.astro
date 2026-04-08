@@ -11,7 +11,11 @@ import ContactForm from '@/components/contacto/ContactForm.astro';
     metaImg=""
 >
     <HeroGradient>
-        Contanos sobre tu <strong class="font-semibold sm:font-bold">proyecto.</strong>
+        <span class="flex flex-col items-start w-fit mx-auto text-left">
+            <span class="italic ml-8 md:ml-16">Contanos</span>
+            <span class="italic">sobre tu</span>
+            <strong class="font-semibold sm:font-bold ml-16 md:ml-24">proyecto</strong>
+        </span>
     </HeroGradient>
     <ContactForm />
 </Layout>
