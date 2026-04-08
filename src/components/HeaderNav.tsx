@@ -169,7 +169,7 @@ export default function HeaderNav({ pathname: initialPathname }: Props) {
                         href="/"
                         className={[
                             "relative block shrink-0 transition-[width] duration-450",
-                            scrolled ? "w-15" : "w-28",
+                            scrolled ? "w-15" : "w-24",
                         ].join(" ")}
                         style={{ transitionTimingFunction: "cubic-bezier(0.34, 1.56, 0.64, 1)" }}
                     >
