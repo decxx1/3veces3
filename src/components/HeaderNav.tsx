@@ -23,6 +23,46 @@ export default function HeaderNav({ pathname: initialPathname }: Props) {
     const [pathname, setPathname] = useState(normalizePath(initialPathname));
     const [animateUnderline, setAnimateUnderline] = useState(true);
     const lightBg = LIGHT_BG_PATHS.includes(pathname);
+    const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+    const mobileOpenRef = useRef(mobileOpen);
+
+    useEffect(() => {
+        mobileOpenRef.current = mobileOpen;
+    }, [mobileOpen]);
+
+    useEffect(() => {
+        let timeoutId: number | undefined;
+
+        const handleActivity = () => {
+            setIsHeaderVisible(true);
+            clearTimeout(timeoutId);
+            
+            timeoutId = setTimeout(() => {
+                // Solo ocultar si se ha scrolleado y no está el menú móvil abierto
+                if (window.scrollY > 60 && !mobileOpenRef.current) {
+                    setIsHeaderVisible(false);
+                }
+            }, 2000); // 2 segundos de inactividad para desaparecer
+        };
+
+        handleActivity();
+
+        window.addEventListener("scroll", handleActivity, { passive: true });
+        
+        // También mostrar el header si el usuario acerca el mouse arriba
+        const handleMouseMove = (e: MouseEvent) => {
+            if (e.clientY < 120) {
+                handleActivity();
+            }
+        };
+        window.addEventListener("mousemove", handleMouseMove, { passive: true });
+
+        return () => {
+            window.removeEventListener("scroll", handleActivity);
+            window.removeEventListener("mousemove", handleMouseMove);
+            clearTimeout(timeoutId);
+        };
+    }, []);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -107,7 +147,14 @@ export default function HeaderNav({ pathname: initialPathname }: Props) {
 
     return (
         <>
-            <header className="fixed top-0 w-full z-50">
+            <header 
+                className={[
+                    "fixed top-0 w-full z-50",
+                    isHeaderVisible || mobileOpen
+                        ? "opacity-100 translate-y-0 transition-all duration-200 ease-out"
+                        : "opacity-0 -translate-y-4 pointer-events-none transition-all duration-1000 ease-in"
+                ].join(" ")}
+            >
                 {/* Nav pill */}
                 <nav
                     className={[
