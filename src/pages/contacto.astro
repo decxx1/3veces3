@@ -1,7 +1,7 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import HeroGradient from '@/components/HeroGradient.astro';
-import ContactForm from '@/components/contacto/ContactForm.astro';
+import ContactForm from '@/components/contacto/ContactForm.tsx';
 import { SITE_KEY } from "astro:env/client";
 ---
 
@@ -18,7 +18,7 @@ import { SITE_KEY } from "astro:env/client";
             <strong class="font-semibold sm:font-bold ml-16 md:ml-24">proyecto</strong>
         </span>
     </HeroGradient>
-    <ContactForm />
+    <ContactForm client:load />
 </Layout>
 
 <!-- recaptcha v3 -->
