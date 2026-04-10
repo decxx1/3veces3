@@ -45,7 +45,7 @@ export default function ContactForm() {
             message: formData.get('message') as string,
             secret_key: SECRET_KEY ?? '',
             addressee: EMAIL ?? '',
-            asunto: `Contacto desde la web - de: ${formData.get('nombre') as string}`,
+            asunto: `Contacto desde la web - de: ${formData.get('name') as string}`,
         };
 
         if (!isSending) {
