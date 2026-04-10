@@ -10,7 +10,7 @@ const { logo, alt, reverse = false } = Astro.props;
 
 <section class="lg:container py-24 px-8 mx-auto">
     <div class={`flex flex-col gap-12 lg:gap-20 lg:max-w-5xl mx-auto ${reverse ? "flex-col-reverse md:flex-row-reverse" : "flex-col-reverse md:flex-row"}`}>
-        <div class="w-full md:w-1/2">
+        <div class="w-full sm:w-2/3 md:w-1/2 max-md:mx-auto">
             <img
                 src={logo}
                 alt={alt}
