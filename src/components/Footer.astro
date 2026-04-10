@@ -1,9 +1,10 @@
 ---
-const phone    = "5491100000000"; // reemplazar con número real
-const email    = "hola@tresvecestres.com.ar";
-const linkedin = "https://www.linkedin.com/company/tresvecestres";
-const instagram= "https://www.instagram.com/tresvecestres";
-const whatsapp = `https://wa.me/${phone}`;
+const phone     = import.meta.env.PUBLIC_WHATSAPP_PHONE;
+const email     = import.meta.env.PUBLIC_EMAIL;
+const linkedin  = import.meta.env.PUBLIC_LINKEDIN_URL;
+const instagram = import.meta.env.PUBLIC_INSTAGRAM_URL;
+const facebook  = import.meta.env.PUBLIC_FACEBOOK_URL;
+const whatsapp  = `https://wa.me/${phone}`;
 ---
 
 <footer id="reveal-footer" class="bg-degrade-3 py-20 fixed bottom-0 left-0 w-full -z-10 h-auto opacity-0 transition-opacity duration-300">
@@ -69,6 +70,19 @@ const whatsapp = `https://wa.me/${phone}`;
                                 <path d="M6.94 5a2 2 0 1 1-4-.002a2 2 0 0 1 4 .002M7 8.48H3V21h4zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.72-2.91z" />
                             </svg>
                         </a>
+
+                        <!-- Facebook -->
+                        <!-- <a
+                            href={facebook}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Facebook de Tres Veces Tres"
+                            class="group size-10 rounded-full border-2 border-white bg-white flex items-center justify-center transition-colors duration-300 hover:bg-degrade-3"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="size-6 fill-degrade-3 transition-colors duration-300 group-hover:fill-white">
+                                <path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4z" />
+                            </svg>
+                        </a> -->
 
                         <!-- Instagram -->
                         <a

@@ -1,7 +1,6 @@
 ---
-const phone = "5491100000000"; // reemplazar con el número real
-const message = encodeURIComponent("Hola, tengo un proyecto y me gustaría conversarlo.");
-const href = `https://wa.me/${phone}?text=${message}`;
+const phone = import.meta.env.PUBLIC_WHATSAPP_PHONE;
+const href = `https://wa.me/${phone}`;
 ---
 
 <section class="bg-[#0c0c0c] py-20 sm:py-32">
