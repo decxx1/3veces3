@@ -2,6 +2,7 @@
 import Layout from '@/layouts/Layout.astro';
 import HeroGradient from '@/components/HeroGradient.astro';
 import ContactForm from '@/components/contacto/ContactForm.astro';
+import { SITE_KEY } from "astro:env/client";
 ---
 
 <Layout
@@ -19,3 +20,6 @@ import ContactForm from '@/components/contacto/ContactForm.astro';
     </HeroGradient>
     <ContactForm />
 </Layout>
+
+<!-- recaptcha v3 -->
+<script async src={'https://www.google.com/recaptcha/api.js?render=' + SITE_KEY}></script>

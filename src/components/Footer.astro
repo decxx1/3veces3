@@ -1,9 +1,17 @@
 ---
-const phone     = import.meta.env.PUBLIC_WHATSAPP_PHONE;
-const email     = import.meta.env.PUBLIC_EMAIL;
-const linkedin  = import.meta.env.PUBLIC_LINKEDIN_URL;
-const instagram = import.meta.env.PUBLIC_INSTAGRAM_URL;
-const facebook  = import.meta.env.PUBLIC_FACEBOOK_URL;
+import {
+    WHATSAPP_PHONE,
+    EMAIL,
+    LINKEDIN_URL,
+    INSTAGRAM_URL,
+    FACEBOOK_URL
+} from 'astro:env/client';
+
+const phone     = WHATSAPP_PHONE;
+const email     = EMAIL;
+const linkedin  = LINKEDIN_URL;
+const instagram = INSTAGRAM_URL;
+const facebook  = FACEBOOK_URL;
 const whatsapp  = `https://wa.me/${phone}`;
 ---
 

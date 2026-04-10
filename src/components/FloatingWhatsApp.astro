@@ -1,5 +1,7 @@
 ---
-const phone = import.meta.env.PUBLIC_WHATSAPP_PHONE;
+import { WHATSAPP_PHONE } from 'astro:env/client';
+
+const phone = WHATSAPP_PHONE;
 const href = `https://wa.me/${phone}`;
 ---
 
