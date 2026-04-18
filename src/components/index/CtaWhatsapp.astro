@@ -8,10 +8,11 @@ const href = `https://wa.me/${phone}`;
 <section class="bg-[#0c0c0c] py-20 sm:py-32">
     <div class="container max-w-6xl mx-auto px-8 md:px-16">
         <a
+            id="cta-magnetic"
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            class="group flex flex-col sm:flex-row items-end justify-center gap-2 sm:gap-4 md:gap-6 w-fit mx-auto"
+            class="group flex flex-col sm:flex-row items-end justify-center gap-2 sm:gap-4 md:gap-6 w-fit mx-auto transition-transform duration-100 ease-out will-change-transform"
             data-aos="zoom-in"
             data-aos-duration="800"
         >
@@ -30,3 +31,25 @@ const href = `https://wa.me/${phone}`;
         </a>
     </div>
 </section>
+
+<script>
+    function initMagnetic() {
+        const magneticBtn = document.getElementById('cta-magnetic');
+        if (magneticBtn) {
+            const strength = 30;
+
+            magneticBtn.addEventListener('mousemove', (e) => {
+                const rect = magneticBtn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+
+                magneticBtn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+            });
+
+            magneticBtn.addEventListener('mouseleave', () => {
+                magneticBtn.style.transform = 'translate(0, 0)';
+            });
+        }
+    }
+    document.addEventListener('astro:page-load', initMagnetic);
+</script>
