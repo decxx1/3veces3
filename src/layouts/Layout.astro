@@ -20,6 +20,10 @@ interface Props {
 }
 
 const { title, canonical, metaDescription, metaImg, preLoad } = Astro.props;
+const urlBase = Astro.url.origin;
+const fullImg = urlBase + metaImg;
+console.log('fullImg', fullImg);
+
 ---
 
 <!doctype html>
@@ -28,6 +32,7 @@ const { title, canonical, metaDescription, metaImg, preLoad } = Astro.props;
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
+		<link rel="sitemap" href="/sitemap-index.xml" />
 		<!-- Favicons -->
 		<link href="/images/logos/favicon/favicon.svg" type="image/svg+xml" rel="icon" />
 		<!-- Favicon compatibilidad -->
@@ -52,14 +57,14 @@ const { title, canonical, metaDescription, metaImg, preLoad } = Astro.props;
 		<meta property="og:description" content={metaDescription} />
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content={canonical} />
-		<meta property="og:image" content={metaImg} />
+		<meta property="og:image" content={fullImg} />
 		<!-- Twitter -->
 		<meta name="twitter:card" content="summary" />
 		<meta name="twitter:site" content="@" />
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={metaDescription} />
 		<meta name="twitter:url" content={canonical} />
-		<meta name="twitter:image" content={metaImg} />
+		<meta name="twitter:image" content={fullImg} />
 		<!-- preconnect para Google Recaptcha -->
 		<link rel="preconnect" href="https://www.google.com" />
 		<link rel="preconnect" href="https://www.gstatic.com" crossorigin />
