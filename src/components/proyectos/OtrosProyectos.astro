@@ -99,13 +99,22 @@ const selectedProjects = nextIndices.map(i => allProjects[i]);
 
 <section class="w-full bg-white py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
   <div class="max-w-6xl mx-auto">
-    <h2 class="text-2xl sm:text-3xl font-light text-gray-800 mb-10 sm:mb-12 text-center tracking-tight">
+    <h2
+      class="text-2xl sm:text-3xl font-light text-gray-800 mb-10 sm:mb-12 text-center tracking-tight"
+      data-aos="fade-down"
+      data-aos-duration="800"
+    >
       Otros proyectos de interés
     </h2>
-    
+
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      {selectedProjects.map(project => (
-        <div class="relative overflow-hidden h-72 sm:h-80">
+      {selectedProjects.map((project, index) => (
+        <div
+          class="relative overflow-hidden h-72 sm:h-80"
+          data-aos="fade-up"
+          data-aos-duration="800"
+          data-aos-delay={index * 150}
+        >
           <ProyectoCard
             bg={project.bg}
             gradientClass={project.gradientClass}
