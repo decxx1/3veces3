@@ -2,6 +2,7 @@
 import Layout from '@/layouts/Layout.astro';
 import HeroGradient from '@/components/HeroGradient.astro';
 import ContactForm from '@/components/contacto/ContactForm.tsx';
+import CtaWhatsapp from '@/components/index/CtaWhatsapp.astro';
 import { SITE_KEY } from "astro:env/client";
 ---
 
@@ -45,6 +46,7 @@ import { SITE_KEY } from "astro:env/client";
     >
         <ContactForm client:load />
     </div>
+    <CtaWhatsapp />
 </Layout>
 
 <!-- recaptcha v3 -->
