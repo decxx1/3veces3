@@ -27,4 +27,6 @@ pnpm-debug.log*
 .CLAUDE.md
 .agents/
 .claude/
+.windsurf/
+skills-lock.json
 
