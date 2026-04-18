@@ -7,7 +7,11 @@ import TeamCarousel from "./TeamCarousel";
         <div class="flex flex-col md:flex-row md:items-start gap-16">
 
             <!-- Título alineado a la izquierda -->
-            <div class="md:flex-1 flex items-center md:items-start md:pt-4">
+            <div
+                class="md:flex-1 flex items-center md:items-start md:pt-4"
+                data-aos="fade-right"
+                data-aos-duration="800"
+            >
                 <h2 class="text-4xl md:text-5xl font-black leading-none tracking-widest">
                     Somos
                     <!-- <span class="uppercase">EQUIPO</span> -->
@@ -15,7 +19,12 @@ import TeamCarousel from "./TeamCarousel";
             </div>
 
             <!-- Carousel alineado a la derecha -->
-            <div class="md:flex-2">
+            <div
+                class="md:flex-2"
+                data-aos="fade-up"
+                data-aos-duration="800"
+                data-aos-delay="200"
+            >
                 <TeamCarousel client:visible transition:persist />
             </div>
 

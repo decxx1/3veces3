@@ -7,10 +7,19 @@ interface Props {
 const { image, alt } = Astro.props;
 ---
 <section class="mt-8 sm:mt-24 pb-24 container mx-auto px-8">
-    <section class="text-center mb-16 sm:mb-22">
+    <section
+        class="text-center mb-16 sm:mb-22"
+        data-aos="fade-down"
+        data-aos-duration="800"
+    >
         <h2 class="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl max-w-xl mx-auto font-light">Estrategia y gestión de comunicación digital</h2>
     </section>
-    <div class="flex justify-center">
+    <div
+        class="flex justify-center"
+        data-aos="fade-up"
+        data-aos-duration="800"
+        data-aos-delay="200"
+    >
         <img
             src={image}
             alt={alt}

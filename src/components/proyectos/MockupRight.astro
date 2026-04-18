@@ -7,7 +7,11 @@ interface Props {
 
 const { image, alt, size = "lg" } = Astro.props;
 ---
-<section class="mb-24 h-full relative">
+<section
+    class="mb-24 h-full relative"
+    data-aos="fade-up"
+    data-aos-duration="800"
+>
     <div class:list={[
         "absolute z-10 w-full left-0 top-1/2 -translate-y-1/2 bg-[#686868]",
         size === "lg" && "h-48 sm:h-80 md:h-96 lg:h-110 xl:h-140",

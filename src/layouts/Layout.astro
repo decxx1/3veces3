@@ -8,6 +8,7 @@ import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp.astro";
 import { ClientRouter } from 'astro:transitions';
+import 'aos/dist/aos.css';
 
 import type { Preload } from "@/types/Preload";
 
@@ -68,6 +69,8 @@ console.log('fullImg', fullImg);
 		<!-- preconnect para Google Recaptcha -->
 		<link rel="preconnect" href="https://www.google.com" />
 		<link rel="preconnect" href="https://www.gstatic.com" crossorigin />
+		<!-- AOS CSS -->
+		<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 		{
 			preLoad?.map(({ href, as, type }) => (
 				<link rel="preload" {as} {href} {type} />
@@ -107,6 +110,21 @@ console.log('fullImg', fullImg);
 			// Run on mount and resize
 			document.addEventListener('astro:page-load', adjustFooterMargin);
 			window.addEventListener('resize', adjustFooterMargin);
+		</script>
+
+		<!-- AOS Script -->
+		<script>
+			// @ts-ignore
+			import AOS from "aos"; 
+			document.addEventListener('astro:page-load', () => {
+				// @ts-ignore
+				AOS.init({
+					duration: 800,
+					once: true,
+					offset: 100,
+					easing: 'ease-out-cubic'
+				});
+			});
 		</script>
 	</body>
 </html>

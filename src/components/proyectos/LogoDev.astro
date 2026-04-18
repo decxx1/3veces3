@@ -10,7 +10,11 @@ const { logo, alt, reverse = false } = Astro.props;
 
 <section class="lg:container py-24 px-8 mx-auto">
     <div class={`flex flex-col gap-12 lg:gap-20 lg:max-w-5xl mx-auto ${reverse ? "flex-col-reverse md:flex-row-reverse" : "flex-col-reverse md:flex-row"}`}>
-        <div class="w-full sm:w-2/3 md:w-1/2 max-md:mx-auto">
+        <div
+            class="w-full sm:w-2/3 md:w-1/2 max-md:mx-auto"
+            data-aos="fade-up"
+            data-aos-duration="800"
+        >
             <img
                 src={logo}
                 alt={alt}
@@ -18,7 +22,12 @@ const { logo, alt, reverse = false } = Astro.props;
                 class="w-full"
             />
         </div>
-        <div class={`w-full md:w-1/2 flex items-start ${reverse ? "justify-start" : "justify-start sm:justify-end"}`}>
+        <div
+            class={`w-full md:w-1/2 flex items-start ${reverse ? "justify-start" : "justify-start sm:justify-end"}`}
+            data-aos="fade-up"
+            data-aos-duration="800"
+            data-aos-delay="150"
+        >
             <div class={`text-2xl xs:text-3xl sm:text-4xl lg:text-5xl max-w-sm font-light leading-tight md:leading-snug tracking-tight text-gray-800 ${reverse ? "text-left" : "text-left sm:text-right"}`}>
                 <slot />
             </div>

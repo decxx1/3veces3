@@ -2,6 +2,7 @@
 import Layout from '@/layouts/Layout.astro';
 import HeroGradient from '@/components/HeroGradient.astro';
 import ContactForm from '@/components/contacto/ContactForm.tsx';
+import CtaWhatsapp from '@/components/index/CtaWhatsapp.astro';
 import { SITE_KEY } from "astro:env/client";
 ---
 
@@ -13,12 +14,39 @@ import { SITE_KEY } from "astro:env/client";
 >
     <HeroGradient>
         <span class="flex flex-col items-start w-fit mx-auto text-left">
-            <span class="italic ml-8 md:ml-16">Contanos</span>
-            <span class="italic">sobre tu</span>
-            <strong class="font-semibold sm:font-bold ml-16 md:ml-24">proyecto</strong>
+            <span
+                class="italic ml-8 md:ml-16"
+                data-aos="fade-down"
+                data-aos-duration="700"
+            >
+                Contanos
+            </span>
+            <span
+                class="italic"
+                data-aos="fade-down"
+                data-aos-duration="700"
+                data-aos-delay="150"
+            >
+                sobre tu
+            </span>
+            <strong
+                class="font-semibold sm:font-bold ml-16 md:ml-24"
+                data-aos="fade-down"
+                data-aos-duration="700"
+                data-aos-delay="300"
+            >
+                proyecto
+            </strong>
         </span>
     </HeroGradient>
-    <ContactForm client:load />
+    <div
+        data-aos="fade-up"
+        data-aos-duration="800"
+        data-aos-delay="200"
+    >
+        <ContactForm client:load />
+    </div>
+    <CtaWhatsapp />
 </Layout>
 
 <!-- recaptcha v3 -->
