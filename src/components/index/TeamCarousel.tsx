@@ -17,6 +17,11 @@ const members = [
         title: "Diseñadora Gráfica Senior",
         image: "/images/equipo/yasmina.webp",
     },
+    {
+        name: "Maria Cortese",
+        title: "Gestora de Proyectos de Triple Impacto",
+        image: "/images/equipo/maria.webp",
+    },
 ];
 
 export default function TeamCarousel() {
@@ -123,11 +128,10 @@ export default function TeamCarousel() {
                         key={i}
                         onClick={() => goTo(i)}
                         aria-label={`Página ${i + 1}`}
-                        className={`h-2 rounded-full transition-all duration-300 ${
-                            i === page
+                        className={`h-2 rounded-full transition-all duration-300 ${i === page
                                 ? "w-6 bg-gray-900"
                                 : "w-2 bg-gray-300 hover:bg-gray-400"
-                        }`}
+                            }`}
                     />
                 ))}
             </div>
