@@ -34,7 +34,6 @@ export default function TeamCarousel() {
     const [isMobile, setIsMobile] = useState(false);
     const [started, setStarted] = useState(false);
     const [transitioning, setTransitioning] = useState(false);
-    const dirRef = useRef<1 | -1>(1); // dirección actual del ping-pong
     const sectionRef = useRef<HTMLDivElement>(null);
     const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -68,16 +67,11 @@ export default function TeamCarousel() {
         return () => observer.disconnect();
     }, [started]);
 
-    // Auto-play ping-pong: avanza y rebota en los extremos sin salto brusco
+    // Auto-play: avanza y vuelve al inicio al llegar al final
     useEffect(() => {
         if (!started) return;
         timerRef.current = setTimeout(() => {
-            setPage((p) => {
-                const next = p + dirRef.current;
-                if (next >= totalPages - 1) dirRef.current = -1;
-                if (next <= 0) dirRef.current = 1;
-                return next;
-            });
+            setPage((p) => (p + 1) % totalPages);
         }, 5000);
         return () => { if (timerRef.current) clearTimeout(timerRef.current); };
     }, [started, page, totalPages]);
@@ -109,7 +103,7 @@ export default function TeamCarousel() {
                     style={{
                         width: `${(members.length / perPage) * 100}%`,
                         transform: `translateX(-${offsetPct / (members.length / perPage)}%)`,
-                        transition: transitioning || page !== 0
+                        transition: started
                             ? "transform 0.55s cubic-bezier(0.77, 0, 0.175, 1)"
                             : "none",
                     }}
