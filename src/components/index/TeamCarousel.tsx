@@ -18,14 +18,14 @@ const members = [
         image: "/images/equipo/yasmina.webp",
     },
     {
-        name: "Natalia Baro",
-        title: "Gestora de Proyectos de Triple Impacto",
-        image: "/images/equipo/natalia.webp",
-    },
-    {
         name: "Agostina Cardenas",
         title: "Comunicadora Social",
         image: "/images/equipo/agostina.webp",
+    },
+    {
+        name: "Natalia Baro",
+        title: "Gestora de Proyectos de Triple Impacto",
+        image: "/images/equipo/natalia.webp",
     },
 ];
 
