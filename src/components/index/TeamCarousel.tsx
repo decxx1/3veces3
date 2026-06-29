@@ -1,16 +1,25 @@
 import { useEffect, useRef, useState } from "react";
 import TeamCard from "./TeamCard";
 
-const members = [
+type Member = {
+    name: string;
+    title: string;
+    image: string;
+    linkedin?: string;
+};
+
+const members: Member[] = [
     {
         name: "Fausto Manrique",
         title: "Co - Fundador | Director de Marketing",
         image: "/images/equipo/fausto.webp",
+        linkedin: "https://www.linkedin.com/in/faustomanrique/",
     },
     {
         name: "Martina Bustos",
         title: "Co - Fundadora | Directora de Comunicación",
         image: "/images/equipo/martina.webp",
+        linkedin: "https://www.linkedin.com/in/martina-natalia-bustos",
     },
     {
         name: "Yasmina Muñoz",
@@ -114,7 +123,12 @@ export default function TeamCarousel() {
                             style={{ width: `${100 / members.length}%` }}
                             className="px-3"
                         >
-                            <TeamCard name={m.name} title={m.title} image={m.image} />
+                            <TeamCard
+                                name={m.name}
+                                title={m.title}
+                                image={m.image}
+                                linkedin={m.linkedin}
+                            />
                         </div>
                     ))}
                 </div>
